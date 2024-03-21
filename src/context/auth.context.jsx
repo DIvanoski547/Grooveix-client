@@ -17,7 +17,7 @@ function AuthProviderWrapper(props) {
   //set new function for authenticating user
   const authenticateUser = () => {
     //get stored token from local storage
-    const storedToken = localStorage("authToken");
+    const storedToken = localStorage.getItem("authToken");
 
     //if authToken is found in local storage
     if (storedToken) {
