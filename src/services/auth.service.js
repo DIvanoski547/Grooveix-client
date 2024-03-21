@@ -31,10 +31,19 @@ class AuthService {
     // return axios.post("http://localhost:5005/auth/singup");
   };
 
-  verify = () => {
-    return this.api.get("/auth/verify");
-    // same as
-    // return axios.post("http://localhost:5005/auth/verify");
+//   verify = () => {
+//     return this.api.get("/auth/verify");
+//     // same as
+//     // return axios.post("http://localhost:5005/auth/verify");
+//   };
+
+  verifyToken = (storedToken) => {
+    return api
+      .get("/auth/verify", {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => response.data)
+      .catch((err) => console.error(err));
   };
 }
 

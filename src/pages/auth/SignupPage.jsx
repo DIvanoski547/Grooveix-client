@@ -1,111 +1,94 @@
 import React from "react";
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Form, Input } from "antd";
+
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import authService from "../../services/auth.service";
 
 const SignupPage = () => {
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+  // set states
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: "",
+    password: "",
+  });
+  const navigate = useNavigate();
+
+  // set function for handling changes in form's inputs
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setUser({ ...user, [name]: value });
   };
+
+  // set function for handling submission of data
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    authService
+      .signup(user)
+      .then(() => navigate("/login"))
+      .catch((err) => console.log(err));
+  };
+  // const onFinish = (values) => {
+  //   console.log("Received values of form: ", values);
+  // };
   return (
-    <Form
-      name="normal_login"
-      className="login-form"
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-    >
-      <Form.Item
-        name="firstName"
-        rules={[
-          {
-            required: true,
-            message: "Please input your Firstname!",
-          },
-        ]}
-      >
-        <Input
-          prefix={<UserOutlined className="site-form-item-icon" />}
-          placeholder="Firstname"
+    <form onSubmit={handleSubmit} className="signUpForm">
+      <div>
+        <h1>Sign up</h1>
+        <label>First Name</label>
+        <br />
+        <input
+          type="text"
+          name="firstName"
+          value={user.firstName}
+          onChange={handleChange}
         />
-      </Form.Item>
-
-      <Form.Item
-        name="lastName"
-        rules={[
-          {
-            required: true,
-            message: "Please input your Lastname!",
-          },
-        ]}
-      >
-        <Input
-          prefix={<UserOutlined className="site-form-item-icon" />}
-          placeholder="Lastname"
+        <br />
+        <label>Last Name</label>
+        <br />
+        <input
+          type="text"
+          name="lastName"
+          value={user.lastName}
+          onChange={handleChange}
         />
-      </Form.Item>
-
-      <Form.Item
-        name="email"
-        rules={[
-          {
-            required: true,
-            message: "Please input your email!",
-          },
-        ]}
-      >
-        <Input
-          prefix={<UserOutlined className="site-form-item-icon" />}
-          placeholder="Email"
+        <br />
+        <label>Username</label>
+        <br />
+        <input
+          type="text"
+          name="username"
+          value={user.username}
+          onChange={handleChange}
         />
-      </Form.Item>
-      <Form.Item
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: "Please input your Username!",
-          },
-        ]}
-      >
-        <Input
-          prefix={<UserOutlined className="site-form-item-icon" />}
-          placeholder="Username"
+        <br />
+        <label>Username</label>
+        <br />
+        <input
+          type="email"
+          name="email"
+          value={user.email}
+          onChange={handleChange}
         />
-      </Form.Item>
-      <Form.Item
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: "Please input your Password!",
-          },
-        ]}
-      >
-        <Input
-          prefix={<LockOutlined className="site-form-item-icon" />}
+        <br />
+        <label>Password</label>
+        <br />
+        <input
           type="password"
-          placeholder="*********"
+          name="password"
+          value={user.password}
+          onChange={handleChange}
         />
-      </Form.Item>
+      </div>
 
-      <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-form-button">
-          Signup
-        </Button>
-      </Form.Item>
-      {/* <Form.Item
-        name="upload"
-        label="Upload"
-        valuePropName="fileList"
-        getValueFromEvent={normFile}
-        extra="longgggggggggggggggggggggggggggggggggg"
-      >
-        <Upload name="logo" action="/upload.do" listType="picture">
-          <Button icon={<UploadOutlined />}>Click to upload</Button>
-        </Upload>
-      </Form.Item> */}
-    </Form>
+ 
+          <button type="submit">
+            <b>Create the account</b>
+          </button>
+    </form>
   );
 };
 export default SignupPage;

@@ -1,55 +1,63 @@
-import React from "react";
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input } from "antd";
+import { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+// import axios from "axios";
+import { AuthContext } from "../../context/auth.context";
+import authService from "../../services/auth.service";
 
 const LoginPage = () => {
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+  const [user, setUser] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
+  const { storeToken, authenticateUser } = useContext(AuthContext);
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setUser((user) => ({ ...user, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    authService
+      .login(user)
+      .then((tokenObject) => {
+        // store the token in localStorage
+        console.log("token", tokenObject.authToken)
+        storeToken(tokenObject.authToken);
+        authenticateUser();
+        navigate("/");
+      })
+      .catch((err) => console.error(err));
   };
   return (
-    <Form
-      name="normal_login"
-      className="login-form"
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-    >
-      <Form.Item
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: "Please input your Username!",
-          },
-        ]}
-      >
-        <Input
-          prefix={<UserOutlined className="site-form-item-icon" />}
-          placeholder="Username"
+    <form onSubmit={handleSubmit} className="loginForm">
+      <div>
+        <h1>Login</h1>
+        <label>Email</label>
+        <br />
+        <input
+          type="email"
+          name="email"
+          value={user.email}
+          onChange={handleChange}
         />
-      </Form.Item>
-      <Form.Item
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: "Please input your Password!",
-          },
-        ]}
-      >
-        <Input
-          prefix={<LockOutlined className="site-form-item-icon" />}
+        <br />
+        <label>Password</label>
+        <br />
+        <input
           type="password"
-          placeholder="Password"
+          name="password"
+          value={user.password}
+          onChange={handleChange}
         />
-      </Form.Item>
-      <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-form-button">
-          Log in
-        </Button>
-      </Form.Item>
-    </Form>
+        <br />
+      </div>
+
+          <button type="submit">
+            <b>Login</b>
+          </button>
+    </form>
   );
 };
+
 export default LoginPage;
