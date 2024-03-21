@@ -1,26 +1,82 @@
 import React, { useState, useEffect } from "react";
+import authService from "../services/auth.service";
 
 const AuthContext = React.createContext(); // call createContext() to create our Context object
 
 function AuthProviderWrapper(props) {
+  //set necessary states for the authentication process
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // state of being logged in
+  const [isLoading, setIsLoading] = useState(true); // state of loading process while authentication is being done
+  const [user, setUser] = useState(null); // state for storing the user
 
-    //set necessary states for the authentication process
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // state of being logged in
-    const [isLoading, setIsLoading] = useState(true); // state of loading process while authentication is being done
-    const [user, setUser] = useState(null); // state for storing the user
+  //add token to local storage t
+  const storeToken = (token) => {
+    localStorage.setItem("authToken", token); //set item named authToken to local storage as token
+  };
 
-    //retrieve token from local storage to have it easily accessible
-    const storeToken = (token) => {
-        localStorage.setItem("authToken", token) //set item named authToken from local storage as token
-    };
+  //set new function for authenticating user
+  const authenticateUser = () => {
+    //get stored token from local storage
+    const storedToken = localStorage("authToken");
 
-    
+    //if authToken is found in local storage
+    if (storedToken) {
+      authService
+        .verify()
+        .then((response) => {
+          const user = response.data;
+          //update all state variables
+          setIsLoggedIn(true);
+          setIsLoading(false);
+          setUser(user);
+        })
+        .catch((error) => {
+          //if server sends error response it means the token is invalid
+          setIsLoggedIn(false);
+          setIsLoading(false);
+          setUser(null);
+        });
+    } else {
+      //for when the token is not found
+      setIsLoggedIn(false);
+      setIsLoading(false);
+      setUser(null);
+    }
+  };
 
-    return (
-        //set the provider, to provide context values to other components, as a wrapper component
-        <AuthContext.Provider value={""}
+  // set function for removing token item from local storage (useful for logout)
+  const removeToken = () => {
+    localStorage.removeItem("authToken");
+  };
 
-    );
+  // set log out function
+  const logOutUser = () => {
+    //callback functions
+    removeToken();
+    authenticateUser();
+  };
+
+  useEffect(() => {
+    //right after components in App get rendered, run this function (only once since it depends on nothing)
+    authenticateUser();
+  }, []);
+
+  return (
+    //set the provider, to provide context values to other components, as a wrapper component
+    // pass state and callback functions to children
+    <AuthContext.Provider
+      value={{
+        isLoggedIn,
+        isLoading,
+        user,
+        storeToken,
+        authenticateUser,
+        logOutUser,
+      }}
+    >
+      {props.children}
+    </AuthContext.Provider>
+  );
 }
 
 export { AuthProviderWrapper, AuthContext };
