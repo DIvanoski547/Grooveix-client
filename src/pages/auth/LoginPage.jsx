@@ -1,13 +1,14 @@
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import axios from "axios";
 import { AuthContext } from "../../context/auth.context";
 import authService from "../../services/auth.service";
+import Navbar from "../../components/Navbar";
 
-const LoginPage = () => {
+const LoginPage = ({withNavbar}) => {
   const [user, setUser] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const { storeToken, authenticateUser } = useContext(AuthContext);
+  const [errorMessage, setErrorMessage] = useState(undefined);
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -17,19 +18,24 @@ const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    // const requestBody = {email, password}
     authService
       .login(user)
-      .then((tokenObject) => {
+      .then((response) => {
         // store the token in localStorage
-        console.log("token", tokenObject.authToken)
-        storeToken(tokenObject.authToken);
+        console.log("token", response.data.authToken);
+        storeToken(response.data.authToken);
         authenticateUser();
         navigate("/");
       })
-      .catch((err) => console.error(err));
+      .catch((error) => {
+        const errorDescription = error.response.data.message;
+        setErrorMessage(errorDescription);
+      });
   };
   return (
+    <>
+    {withNavbar && <Navbar />}
     <form onSubmit={handleSubmit} className="loginForm">
       <div>
         <h1>Login</h1>
@@ -52,11 +58,12 @@ const LoginPage = () => {
         />
         <br />
       </div>
-
-          <button type="submit">
-            <b>Login</b>
-          </button>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      <button type="submit">
+        <b>Login</b>
+      </button>
     </form>
+    </>
   );
 };
 

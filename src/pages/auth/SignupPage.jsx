@@ -1,10 +1,11 @@
 import React from "react";
-
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import authService from "../../services/auth.service";
+import { AuthContext } from "../../context/auth.context";
+import Navbar from "../../components/Navbar";
 
-const SignupPage = () => {
+const SignupPage = ({withNavbar}) => {
   // set states
   const [user, setUser] = useState({
     firstName: "",
@@ -14,6 +15,7 @@ const SignupPage = () => {
     password: "",
   });
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState(undefined);
 
   // set function for handling changes in form's inputs
   const handleChange = (e) => {
@@ -28,13 +30,17 @@ const SignupPage = () => {
     e.preventDefault();
     authService
       .signup(user)
+
       .then(() => navigate("/login"))
-      .catch((err) => console.log(err));
+      .catch((error) => {
+        const errorDescription = error.response.data.message;
+        setErrorMessage(errorDescription);
+      });
   };
-  // const onFinish = (values) => {
-  //   console.log("Received values of form: ", values);
-  // };
+
   return (
+    <>
+    {withNavbar && <Navbar />}
     <form onSubmit={handleSubmit} className="signUpForm">
       <div>
         <h1>Sign up</h1>
@@ -65,7 +71,7 @@ const SignupPage = () => {
           onChange={handleChange}
         />
         <br />
-        <label>Username</label>
+        <label>Email</label>
         <br />
         <input
           type="email"
@@ -83,12 +89,13 @@ const SignupPage = () => {
           onChange={handleChange}
         />
       </div>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
 
- 
-          <button type="submit">
-            <b>Create the account</b>
-          </button>
+      <button type="submit">
+        <b>Create the account</b>
+      </button>
     </form>
+    </>
   );
 };
 export default SignupPage;

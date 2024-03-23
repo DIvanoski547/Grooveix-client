@@ -23,7 +23,7 @@ function AuthProviderWrapper(props) {
     //if authToken is found in local storage
     if (storedToken) {
       authService
-        .verifyToken(storedToken)
+        .verify(storedToken)
         .then((response) => {
           const user = response.data;
           //update all state variables
