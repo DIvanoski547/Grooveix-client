@@ -8,7 +8,8 @@ function AuthProviderWrapper(props) {
   //set necessary states for the authentication process
   const [isLoggedIn, setIsLoggedIn] = useState(false); // state of being logged in
   const [isLoading, setIsLoading] = useState(true); // state of loading process while authentication is being done
-  const [user, setUser] = useState(null); // state for storing the user
+    const [user, setUser] = useState(null); // state for storing the user
+    const [isAdmin, setIsAdmin] = useState(false);
 
 
   const storeToken = (token) => {
@@ -25,11 +26,15 @@ function AuthProviderWrapper(props) {
       authService
         .verify(storedToken)
         .then((response) => {
-          const user = response.data;
+            const user = response.data;
+            console.log("user",response.data)
           //update all state variables
           setIsLoggedIn(true);
           setIsLoading(false);
-          setUser(user);
+            setUser(user);
+            if (response.data.role === "admin") {
+                setIsAdmin(true)
+            }
         })
         .catch((error) => {
           //if server sends error response it means the token is invalid
@@ -72,7 +77,7 @@ function AuthProviderWrapper(props) {
         user,
         storeToken,
         authenticateUser,
-        logOutUser,
+        logOutUser,isAdmin
       }}
     >
       {props.children}

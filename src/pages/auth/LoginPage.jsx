@@ -26,7 +26,7 @@ const LoginPage = ({withNavbar}) => {
         console.log("token", response.data.authToken);
         storeToken(response.data.authToken);
         authenticateUser();
-        navigate("/");
+        navigate("/homepage");
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;
