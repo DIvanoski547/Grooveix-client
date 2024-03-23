@@ -91,10 +91,10 @@ const SignupPage = () => {
       </div>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
 
-      <button type="submit">
-        <b>Create the account</b>
-      </button>
-    </form>
+        <button type="submit">
+          <b>Create the account</b>
+        </button>
+      </form>
     </>
   );
 };

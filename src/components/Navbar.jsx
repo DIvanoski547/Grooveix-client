@@ -10,17 +10,26 @@ function Navbar() {
         <button>Home</button>
       </Link>
 
-      <Link to="/signup">
-        {" "}
-        <button>Sign Up</button>{" "}
-      </Link>
-      <Link to="/login">
-        {" "}
-        <button>Login</button>{" "}
-      </Link>
-      {isLoggedIn && (
+      {isLoggedIn ? (
         <>
-          <button onClick={logOutUser}>Logout</button>
+          <Link to="/profile">
+            {" "}
+            <button>Profile</button>{" "}
+          </Link>
+          <button onClick={logOutUser}>
+            <Link to="/homepage">Logout</Link>
+          </button>
+        </>
+      ) : (
+        <>
+          <Link to="/signup">
+            {" "}
+            <button>Sign Up</button>{" "}
+          </Link>
+          <Link to="/login">
+            {" "}
+            <button>Login</button>{" "}
+          </Link>
         </>
       )}
     </nav>

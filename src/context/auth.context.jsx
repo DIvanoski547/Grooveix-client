@@ -3,13 +3,12 @@ import authService from "../services/auth.service";
 
 const AuthContext = React.createContext(); // call createContext() to create our Context object
 
-
 function AuthProviderWrapper(props) {
   //set necessary states for the authentication process
   const [isLoggedIn, setIsLoggedIn] = useState(false); // state of being logged in
   const [isLoading, setIsLoading] = useState(true); // state of loading process while authentication is being done
   const [user, setUser] = useState(null); // state for storing the user
-
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const storeToken = (token) => {
     localStorage.setItem("authToken", token); //set item named authToken to local storage
@@ -26,10 +25,14 @@ function AuthProviderWrapper(props) {
         .verify(storedToken)
         .then((response) => {
           const user = response.data;
+          console.log("user", response.data);
           //update all state variables
           setIsLoggedIn(true);
           setIsLoading(false);
           setUser(user);
+          if (response.data.role === "admin") {
+            setIsAdmin(true);
+          }
         })
         .catch((error) => {
           //if server sends error response it means the token is invalid
@@ -73,6 +76,7 @@ function AuthProviderWrapper(props) {
         storeToken,
         authenticateUser,
         logOutUser,
+        isAdmin,
       }}
     >
       {props.children}
