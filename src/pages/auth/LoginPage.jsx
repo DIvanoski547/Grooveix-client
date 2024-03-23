@@ -4,7 +4,7 @@ import { AuthContext } from "../../context/auth.context";
 import authService from "../../services/auth.service";
 import Navbar from "../../components/Navbar";
 
-const LoginPage = ({withNavbar}) => {
+const LoginPage = ({ withNavbar }) => {
   const [user, setUser] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const { storeToken, authenticateUser } = useContext(AuthContext);
@@ -35,34 +35,34 @@ const LoginPage = ({withNavbar}) => {
   };
   return (
     <>
-    {withNavbar && <Navbar />}
-    <form onSubmit={handleSubmit} className="loginForm">
-      <div>
-        <h1>Login</h1>
-        <label>Email</label>
-        <br />
-        <input
-          type="email"
-          name="email"
-          value={user.email}
-          onChange={handleChange}
-        />
-        <br />
-        <label>Password</label>
-        <br />
-        <input
-          type="password"
-          name="password"
-          value={user.password}
-          onChange={handleChange}
-        />
-        <br />
-      </div>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-      <button type="submit">
-        <b>Login</b>
-      </button>
-    </form>
+      {withNavbar && <Navbar />}
+      <form onSubmit={handleSubmit} className="loginForm">
+        <div>
+          <h1>Login</h1>
+          <label>Email</label>
+          <br />
+          <input
+            type="email"
+            name="email"
+            value={user.email}
+            onChange={handleChange}
+          />
+          <br />
+          <label>Password</label>
+          <br />
+          <input
+            type="password"
+            name="password"
+            value={user.password}
+            onChange={handleChange}
+          />
+          <br />
+        </div>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <button type="submit">
+          <b>Login</b>
+        </button>
+      </form>
     </>
   );
 };

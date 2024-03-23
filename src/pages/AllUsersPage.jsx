@@ -1,35 +1,36 @@
 import axios from "axios";
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 import UserCard from "../components/UserCard";
 import Navbar from "../components/Navbar";
 
 const API_URI = "http://localhost:5005";
 
 function AllUsersPage() {
+  const [users, setUsers] = useState([]);
+  const getUsers = () => {
+    const storedToken = localStorage.getItem("authToken");
+    axios
+      .get(`${API_URI}/api/all-users`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        setUsers(response.data);
+      })
+      .catch((err) => console.log(err));
+  };
 
-    const [users, setUsers] = useState([])
-    const getUsers = () => {
-        const storedToken = localStorage.getItem("authToken");
-        axios.get(`${API_URI}/api/all-users`, { headers: { Authorization: `Bearer ${storedToken}` } })
-            .then((response) => {
-                setUsers(response.data)
-            })
-        .catch((err) => console.log(err))
-    } 
+  useEffect(() => {
+    getUsers();
+  }, []);
 
-    useEffect(() => {
-        getUsers();
-    }, []);
-    
-    return (
-        <>
-            <Navbar/>
-            {users.map((user) => (
+  return (
+    <>
+      <Navbar />
+      {users.map((user) => (
         <UserCard key={user._id} {...user} />
       ))}
     </>
-        
-    );
+  );
 }
 
 export default AllUsersPage;
