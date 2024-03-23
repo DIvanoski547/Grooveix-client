@@ -5,7 +5,7 @@ import authService from "../../services/auth.service";
 import { AuthContext } from "../../context/auth.context";
 import Navbar from "../../components/Navbar";
 
-const SignupPage = ({withNavbar}) => {
+const SignupPage = () => {
   // set states
   const [user, setUser] = useState({
     firstName: "",
@@ -40,7 +40,7 @@ const SignupPage = ({withNavbar}) => {
 
   return (
     <>
-    {withNavbar && <Navbar />}
+    <Navbar />
     <form onSubmit={handleSubmit} className="signUpForm">
       <div>
         <h1>Sign up</h1>
