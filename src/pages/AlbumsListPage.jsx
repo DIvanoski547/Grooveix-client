@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 
 function AlbumsListPage() {
   const [albums, setAlbums] = useState([]);
-  const {albumId} = useParams();
+  const { albumId } = useParams();
 
   const getAllAlbums = () => {
     albumsService
@@ -27,7 +27,7 @@ function AlbumsListPage() {
       {albums.map((album) => (
         <>
           <p>{album.albumImage}</p>
-          
+
           <Link key={album._id} to={`/albums/${albumId}`}>
             <h2>{album.albumName}</h2>
           </Link>
