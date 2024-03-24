@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import UserCard from "../components/UserCard";
 import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
 
 const API_URI = "http://localhost:5005";
 
@@ -29,6 +30,11 @@ function AllUsersPage() {
       {users.map((user) => (
         <UserCard key={user._id} {...user} />
       ))}
+      <button>
+          <Link to={"/profile"}>
+            Back
+          </Link>
+        </button>
     </>
   );
 }

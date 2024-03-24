@@ -18,7 +18,7 @@ function ProfilePage() {
           <br />
           <button>
             <Link to="/all-users"> View all users</Link>
-          </button>
+          </button>{" "}
           <button>
             <Link to="/albums"> View all albums</Link>
           </button>

@@ -1,11 +1,12 @@
 import Navbar from "../components/Navbar";
 
-function Homepage({ withNavbar }) {
+function Homepage() {
   return (
-    <div>
-      {withNavbar && <Navbar />}
+    <>
+      <Navbar />
       <h1>Homepage</h1>
-    </div>
+      <h3>New Releases</h3>
+    </>
   );
 }
 

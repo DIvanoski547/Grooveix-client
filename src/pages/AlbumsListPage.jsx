@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import albumsService from "../services/albums.service";
 import { Link, useParams } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 function AlbumsListPage() {
   const [albums, setAlbums] = useState([]);
@@ -18,8 +19,9 @@ function AlbumsListPage() {
   }, []);
 
   return (
-    <div>
-      <p>album list:</p>
+    <>
+    <Navbar />
+      <h3>Album list:</h3>
       <button>
         <Link to="/create-album">Create New Album</Link>
       </button>
@@ -33,7 +35,7 @@ function AlbumsListPage() {
           </Link>
         </>
       ))}
-    </div>
+    </>
   );
 }
 

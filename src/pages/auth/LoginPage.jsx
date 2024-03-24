@@ -60,7 +60,12 @@ const LoginPage = ({ withNavbar }) => {
         </div>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <button type="submit">
-          <b>Login</b>
+          Login
+        </button>
+        <button>
+          <Link to={"/"}>
+            Back
+          </Link>
         </button>
       </form>
     </>

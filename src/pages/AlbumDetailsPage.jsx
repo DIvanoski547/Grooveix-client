@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import albumsService from "../services/albums.service";
+import Navbar from "../components/Navbar";
 
 function AlbumDetailPage() {
   const [album, setAlbum] = useState(null);
@@ -26,6 +27,7 @@ function AlbumDetailPage() {
 
   return (
     <>
+    <Navbar />
       {album && (
         <>
           <p>{album.albumImage}</p>

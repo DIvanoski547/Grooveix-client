@@ -40,7 +40,7 @@ const SignupPage = () => {
 
   return (
     <>
-    <Navbar />
+    {/* <Navbar /> */}
     <form onSubmit={handleSubmit} className="signUpForm">
       <div>
         <h1>Sign up</h1>
@@ -92,7 +92,13 @@ const SignupPage = () => {
       {errorMessage && <p className="error-message">{errorMessage}</p>}
 
         <button type="submit">
-          <b>Create the account</b>
+          Create the account
+        </button>
+        <br />
+        <button>
+          <Link to={"/"}>
+            Back
+          </Link>
         </button>
       </form>
     </>
