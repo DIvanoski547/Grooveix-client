@@ -13,24 +13,15 @@ function App() {
   return (
     <div>
       <Routes>
-          <Route exact path="/" element={<StarterPage />} />
-         <Route exact path="/login" element={<LoginPage />} />
-         <Route
-          exact
-          path="/signup"
-          element={<SignupPage />}
-        />
-         <Route
-          exact
-          path="/homepage"
-          element={<Homepage />} />
+        <Route exact path="/" element={<StarterPage />} />
+        <Route exact path="/login" element={<LoginPage />} />
+        <Route exact path="/signup" element={<SignupPage />} />
+        <Route exact path="/homepage" element={<Homepage />} />
         <Route exact path="/albums" element={<AlbumsListPage />} />
-        <Route exact path="/albums/:albumId" element={<AlbumDetailPage />}
-        />
+        <Route exact path="/albums/:albumId" element={<AlbumDetailPage />} />
         <Route exact path="/profile" element={<ProfilePage />} />
-        <Route exact path="/all-users" element={<AllUsersPage/> } />
+        <Route exact path="/all-users" element={<AllUsersPage />} />
       </Routes>
-     
     </div>
   );
 }
