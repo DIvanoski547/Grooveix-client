@@ -40,7 +40,7 @@ class AlbumsService {
   };
 
   // DELETE /api/albums/:id
-  deleteAlbums = (albumId) => {
+  deleteAlbum = (albumId) => {
     return this.api.delete(`/api/albums/${albumId}`);
   };
 }

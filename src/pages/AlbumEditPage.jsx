@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 function AlbumEditPage() {
   const [albumImage, setAlbumImage] = useState("");
   const [albumName, setAlbumName] = useState("");
-  const [artistsNames, setArtistsNames] = useState([""]);
+  const [artistsNames, setArtistsNames] = useState("");
 
   const { albumId } = useParams();
   const navigate = useNavigate();
@@ -21,9 +21,10 @@ function AlbumEditPage() {
       })
       .catch((error) => console.log(error));
   }, [albumId]);
+
   // Function to handle submit and update
-  const handlesubmitForm = (e) => {
-    e.preventdefault();
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
     const requestBody = { albumImage, albumName, artistsNames };
 
     albumsService.updateAlbum(albumId, requestBody).then(() => {
@@ -34,9 +35,9 @@ function AlbumEditPage() {
   //function to delete an album
   const deleteAlbum = () => {
     albumsService
-      .deleteAlbums(albumId)
+      .deleteAlbum(albumId)
       .then(() => {
-        console.log(`album with ID ${albumId} was deleted`)
+        console.log(`album with ID ${albumId} was deleted`);
         navigate("/albums");
       })
       .catch((error) => console.log(error));
@@ -45,7 +46,9 @@ function AlbumEditPage() {
   return (
     <>
       <h1>Album edit page:</h1>
-      <form onSubmit={handlesubmitForm}>
+      <form onSubmit={handleSubmitForm}>
+        <img src={albumImage} alt="album_img" width={300} height={300} />
+        <br />
         <label>AlbumName:</label>
         <input
           type="text"
@@ -54,7 +57,7 @@ function AlbumEditPage() {
           onChange={(e) => setAlbumName(e.target.value)}
         />
         <br />
-        <label>Artistst Names:</label>
+        <label>Artists Names:</label>
         <input
           type="text"
           name="artistsNames"

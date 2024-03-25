@@ -12,10 +12,10 @@ function ProfilePage() {
 
       {isAdmin ? (
         <>
-          <h1>im admin</h1>
-          {user.firstName} {user.lastName} <br />
-          {user.username}
-          <br />
+          <h4>im admin</h4>
+          <p>Firstname: {user.firstName}</p>
+          <p>Lastname: {user.lastName}</p>
+          <p>Username: {user.username}</p>
           <button>
             <Link to="/all-users"> View all users</Link>
           </button>{" "}
