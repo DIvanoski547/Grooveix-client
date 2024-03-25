@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import albumsService from "../services/albums.service";
 import Navbar from "../components/Navbar";
 
@@ -23,29 +23,41 @@ function AlbumDetailPage() {
 
   useEffect(() => {
     getAlbum();
-  }, []);
+  }, [albumId]);
 
   return (
     <>
-    <Navbar />
+      <Navbar />
       {album && (
         <>
           <p>{album.albumImage}</p>
           <h1>{album.albumName}</h1>
           <p>{album.artistsNames}</p>
           <h2>Reviews</h2>
-          <ul>
-            {reviews.map((review) => (
-              <li key={review._id}>
-                {/* Assuming review structure matches the Mongoose schema */}
-                <p>Username: {review.username}</p>
-                <p>Rating: {review.rating}</p>
-                <p>Content: {review.content}</p>
-              </li>
-            ))}
-          </ul>
+          
+          {reviews.length > 0 ? (
+            <ul>
+              {reviews.map((review) => (
+                <li key={review._id}>
+                  <p>Username: {review.username}</p>
+                  <p>Rating: {review.rating}</p>
+                  <p>Content: {review.content}</p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No reviews available</p>
+          )}
+          
         </>
+        
       )}
+      <Link to="/albums">
+        <button>Back to albums</button>
+      </Link>
+      <Link to={`/albums/edit/${albumId}`}>
+        <button>Edit</button>
+      </Link>
     </>
   );
 }

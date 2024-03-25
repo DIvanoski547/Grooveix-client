@@ -4,12 +4,14 @@ function StarterPage() {
   return (
     <>
       <img src="" alt="" />
-      <button>
-        <Link to="/signup">Signup</Link>
-      </button>
-      <button>
-        <Link to="/login">Login</Link>
-      </button>
+
+      <Link to="/signup">
+        <button>Signup</button>
+      </Link>
+
+      <Link to="/login">
+        <button>Login</button>
+      </Link>
     </>
   );
 }

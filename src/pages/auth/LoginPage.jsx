@@ -35,7 +35,7 @@ const LoginPage = ({ withNavbar }) => {
   };
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <form onSubmit={handleSubmit} className="loginForm">
         <div>
           <h1>Login</h1>
@@ -60,6 +60,7 @@ const LoginPage = ({ withNavbar }) => {
         </div>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <button type="submit">Login</button>
+        <br />
         <button>
           <Link to={"/"}>Back</Link>
         </button>

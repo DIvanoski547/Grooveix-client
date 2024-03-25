@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import albumsService from "../services/albums.service";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 function AlbumsListPage() {
   const [albums, setAlbums] = useState([]);
-  const { albumId } = useParams();
 
   const getAllAlbums = () => {
     albumsService
@@ -20,21 +19,28 @@ function AlbumsListPage() {
 
   return (
     <>
-    <Navbar />
+      <Navbar />
       <h3>Album list:</h3>
-      <button>
-        <Link to="/create-album">Create New Album</Link>
-      </button>
 
       {albums.map((album) => (
-        <>
+       <div className="album_card">
+         <div key={album._id}>
           <p>{album.albumImage}</p>
 
-          <Link key={album._id} to={`/albums/${albumId}`}>
+          <Link to={`/albums/${album._id}`}>
             <h2>{album.albumName}</h2>
           </Link>
-        </>
+        </div>
+       </div>
       ))}
+
+      <button>
+        <Link to="/albums/create-album">Create New Album</Link>
+      </button>
+      <br />
+      <button>
+        <Link to="/profile">Back</Link>
+      </button>
     </>
   );
 }
