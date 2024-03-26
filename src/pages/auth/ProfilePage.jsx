@@ -7,28 +7,38 @@ import avatarPng from "../../assets/avatar.png";
 
 function ProfilePage() {
   const { user, setUser, isAdmin } = useContext(AuthContext);
-  const [imageUpload, setImageUpload] = useState({});
+  const [image, setImage] = useState("");
+  // const [imageUpload, setImageUpload] = useState({});
   const [showUpload, setShowUpload] = useState(false);
 
   const handleFileUpload = (e) => {
     const uploadData = new FormData();
-    uploadData.append("image", e.target.files[0]);
-    setImageUpload(uploadData);
-    // setShowUpload(false);
+    uploadData.append("profileImage", e.target.files[0]);
+    axios.post("http://localhost:5005/api/profile/image-upload", uploadData)
+      .then(response => {
+      setImage(response.data.image)
+    })
+    // setImageUpload(uploadData);
+
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const responseCloudinaryUpload = await axios.post(
       "http://localhost:5005/api/profile/image-upload",
-      imageUpload
+      image
     );
     const responseUserUpdate = await axios.put(
       "http://localhost:5005/api/profile",
       { ...user, profileImage: responseCloudinaryUpload.data.image }
-    );
+    )
+      .then(response => {
+        setUser(response.data.updatedUser)
+        setImage("")
+    })
 
-    setUser(responseUserUpdate.data.updatedUser);
+  //  setUser(responseUserUpdate.data.updatedUser);
+  //  setShowUpload(false);
   };
 
   return (
@@ -65,7 +75,7 @@ function ProfilePage() {
             <button onClick={() => setShowUpload(!showUpload)}>
               Cancel change
             </button>
-            <button onClick={()=> setShowUpload(!showUpload)} type="submit">Save new profile image</button>
+            <button type="submit">Save new profile image</button>
           </form>
         )}
       </div>
