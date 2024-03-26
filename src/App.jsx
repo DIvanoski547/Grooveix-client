@@ -10,6 +10,7 @@ import AlbumCreatePage from "./pages/AlbumCreatePage";
 import ProfilePage from "./pages/auth/ProfilePage";
 import AllUsersPage from "./pages/AllUsersPage";
 import AlbumEditPage from "./pages/AlbumEditPage";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

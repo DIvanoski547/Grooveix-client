@@ -54,6 +54,27 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.btn-magenta{
+  background-color: #CE93D8; 
+  outline: none;
+  cursor: pointer;
+  border-radius: 15px;
+  /* padding: 10px 100px; */
+  width: 250px;
+}
+
+.img-wrap{
+  height: 250px;
+  width: 250px;
+}
+
+/* .bg-magenta{
+  background-color: #f0ecf1;
+  height: 100vh;
+  width: 100vw;
+} */
+
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
