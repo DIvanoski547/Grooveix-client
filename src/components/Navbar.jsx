@@ -17,7 +17,7 @@ function Navbar() {
             <button>Profile</button>{" "}
           </Link>
           <button onClick={logOutUser}>
-            <Link to="/homepage">Logout</Link>
+            <Link to="/">Logout</Link>
           </button>
         </>
       ) : (

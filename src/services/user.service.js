@@ -1,6 +1,6 @@
 import axios from "axios";
 
-class AuthService {
+class UserService {
   constructor() {
     this.api = axios.create({
       baseURL: "http://localhost:5005",
@@ -19,27 +19,24 @@ class AuthService {
     });
   }
 
-  login = (requestBody) => {
-    return this.api.post("/auth/login", requestBody);
-    // same as
-    // return axios.post("http://localhost:5005/auth/login");
+  getUsers = () => {
+    return this.api.get("/api/all-users");
   };
 
-  signup = (requestBody) => {
-    return this.api.post("/auth/signup", requestBody);
-    // same as
-    // return axios.post("http://localhost:5005/auth/singup");
+  addUser = (requestBody) => {
+    return this.api.post("/api/all-users", requestBody);
   };
 
-  verify = () => {
-    return this.api.get("/auth/verify");
-    // same as
-    // return axios.post("http://localhost:5005/auth/verify");
+  getProfile = () => {
+    return this.api.get("/api/profile");
   };
 
+  viewUser = () => {
+    return this.api.get("/api/users/:userId");
+  };
 }
 
 // Create one instance (object) of the service
-const authService = new AuthService();
+const userService = new UserService();
 
-export default authService;
+export default userService;
