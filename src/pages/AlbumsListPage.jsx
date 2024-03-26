@@ -23,15 +23,18 @@ function AlbumsListPage() {
       <h3>Album list:</h3>
 
       {albums.map((album) => (
-       <div className="album_card">
-         <div key={album._id}>
-            <img src={album.albumImage} style={{ width: 200, height:200 }} />
-
-          <Link to={`/albums/${album._id}`}>
+        <Link to={`/albums/${album._id}`} key={album._id}>
+          <div className="album_card">
+            <img
+              src={album.albumImage}
+              alt="album_img"
+              width={300}
+              height={300}
+            />{" "}
+            {/* INLINE CODE TO NE REMOVED LATER */}
             <h2>{album.albumName}</h2>
-          </Link>
-        </div>
-       </div>
+          </div>
+        </Link>
       ))}
 
       <button>

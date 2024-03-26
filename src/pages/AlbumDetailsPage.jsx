@@ -30,11 +30,17 @@ function AlbumDetailPage() {
       <Navbar />
       {album && (
         <>
-          <p>{album.albumImage}</p>
+          <br />
+          <img
+            src={album.albumImage}
+            alt="album_img"
+            width={300}
+            height={300}
+          />
           <h1>{album.albumName}</h1>
           <p>{album.artistsNames}</p>
           <h2>Reviews</h2>
-          
+
           {reviews.length > 0 ? (
             <ul>
               {reviews.map((review) => (
@@ -48,9 +54,7 @@ function AlbumDetailPage() {
           ) : (
             <p>No reviews available</p>
           )}
-          
         </>
-        
       )}
       <Link to="/albums">
         <button>Back to albums</button>

@@ -20,6 +20,7 @@ function AllUsersPage() {
   return (
     <>
       <Navbar />
+      <br />
       {users.map((user) => (
         <UserCard key={user._id} {...user} />
       ))}

@@ -1,6 +1,6 @@
 function UserCard({ firstName, lastName, username }) {
   return (
-    <div>
+    <div className="album_card">
       <h4>{username}</h4>
       <p>{firstName}</p>
       <p>{lastName}</p>
