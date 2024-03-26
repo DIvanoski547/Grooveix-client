@@ -4,7 +4,7 @@ import { AuthContext } from "../../context/auth.context";
 import authService from "../../services/auth.service";
 import Navbar from "../../components/Navbar";
 
-const LoginPage = ({ withNavbar }) => {
+const LoginPage = () => {
   const [user, setUser] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const { storeToken, authenticateUser } = useContext(AuthContext);
@@ -35,7 +35,7 @@ const LoginPage = ({ withNavbar }) => {
   };
   return (
     <>
-      {/* <Navbar /> */}
+   
       <form onSubmit={handleSubmit} className="loginForm">
         <div>
           <h1>Login</h1>
@@ -70,4 +70,4 @@ const LoginPage = ({ withNavbar }) => {
   );
 };
 
-export default LoginPage;
+export default LoginPage;
