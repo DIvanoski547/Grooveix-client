@@ -1,7 +1,7 @@
 #root {
-  max-width: 1280px;
+  max-width: 4000px;
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   text-align: center;
 }
 
@@ -41,7 +41,7 @@
   color: #888;
 }
 
-.album_card {
+.album-card {
   width: 400px;
   padding: 10px;
   box-shadow: 0px 2px 3px grey;
@@ -49,4 +49,5 @@
   margin-bottom: 20px;
   background: lightgray;
   border-radius: 4px;
+  
 }

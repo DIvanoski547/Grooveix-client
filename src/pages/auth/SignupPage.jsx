@@ -39,67 +39,73 @@ const SignupPage = () => {
   };
 
   return (
-    <>
-      {/* <Navbar /> */}
-      <form onSubmit={handleSubmit} className="signUpForm">
-        <div>
-          <h1>Create account</h1>
-          <label>First Name</label>
-          <br />
+    <div className="bg-lila">
+      <div className="wrap-container">
+        <div className="wrap">
+   <form onSubmit={handleSubmit} className="signUpForm">
+        <div className="">
+          <h1 className="text-light"> <b> Create account</b></h1>
+         
           <input
+           className="form-control my-3"
             type="text"
             name="firstName"
             value={user.firstName}
             onChange={handleChange}
+            placeholder="First Name"
           />
-          <br />
-          <label>Last Name</label>
-          <br />
+        
           <input
+           className="form-control mb-3"
             type="text"
             name="lastName"
             value={user.lastName}
             onChange={handleChange}
+            placeholder="Last Name"
           />
-          <br />
-          <label>Username</label>
-          <br />
+       
           <input
+           className="form-control mb-3"
             type="text"
             name="username"
             value={user.username}
             onChange={handleChange}
+            placeholder="Username"
           />
-          <br />
-          <label>Email</label>
-          <br />
+        
           <input
+           className="form-control mb-3"
             type="email"
             name="email"
             value={user.email}
             onChange={handleChange}
+            placeholder="user@email.com"
           />
-          <br />
-          <label>Password</label>
-          <br />
+      
           <input
+           className="form-control "
             type="password"
             name="password"
             value={user.password}
             onChange={handleChange}
+            placeholder="**********"
           />
         </div>
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        {errorMessage && <p className="error-message text-danger mt-3">{errorMessage}</p>}
 
-        <button type="submit">Sign Up</button>
+        <button type="submit" className="btn-magenta m-3">Sign Up</button>
         <br />
 
         <Link to={"/"}>
           {" "}
-          <button>Back</button>
+          <button className="btn-magenta">Back</button>
         </Link>
       </form>
-    </>
+        </div>
+      </div>
+    
+   
+    </div>
   );
 };
 export default SignupPage;

@@ -1,41 +1,138 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Navbar from '../components/Navbar';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Navbar from "../components/Navbar";
 
-function App() {
-  const [albums, setAlbums] = useState([]);
+const client_id = "c60f0049bfc041a5a26d2fb2e1cef823";
+const client_secret = "75daf3ab6adc4ff88c150744a952a965";
 
+function Homepage() {
+  const [token, setToken] = useState("");
+  const [newReleasesData, setNewReleasesData] = useState([]);
+  const [popularArtists, setPopularArtists] = useState([]);
+  const accessToken = token;
+
+  // USE EFFECT TO ACCESS TOKEN FROM SPOTIFY API
   useEffect(() => {
-    const fetchData = async () => {
+    const authOptions = {
+      url: "https://accounts.spotify.com/api/token",
+      headers: {
+        Authorization: "Basic " + btoa(client_id + ":" + client_secret),
+      },
+      data: "grant_type=client_credentials",
+    };
+
+    axios
+      .post(authOptions.url, authOptions.data, {
+        headers: authOptions.headers,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          setToken(response.data.access_token);
+        } else {
+          console.error("Failed to get access token:", response.statusText);
+        }
+      })
+      .catch((error) => {
+        console.error("Error getting access token:", error);
+      });
+  }, []);
+
+  //USE EFFECT TO RETRIVE NEW RELEASES FROM SPOTIFY API
+  useEffect(() => {
+    const fetchNewreleasesData = async () => {
       try {
-        const response = await axios.get('https://api.spotify.com/v1/browse/new-releases', {
-          headers: {
-            'Authorization': 'Bearer 1POdFZRZbvb...qqillRxMr2z' // Your Spotify access token
+        const response = await axios.get(
+          "https://api.spotify.com/v1/browse/new-releases",
+          {
+            params: {
+              limit: 5,
+            },
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
           }
-        });
+        );
 
         if (response.status === 200) {
-          setAlbums(response.data.albums.items);
+          setNewReleasesData(response.data);
         } else {
-          console.error('Failed to fetch data from Spotify API');
+          console.error("Failed to fetch artist data:", response.statusText);
         }
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching artist data:", error);
       }
     };
 
-    fetchData();
-  }, []);
+    fetchNewreleasesData();
+  }, [accessToken]);
+
+  //USE EFFECT TO RETRIVE POLULAR ARTISTS FROM SPOTIFY API
+  useEffect(() => {
+    const fetchPopularArtists = async () => {
+      try {
+        const response = await axios.get("https://api.spotify.com/v1/search", {
+          params: {
+            q: 'genre:"pop"',
+            type: "artist",
+            limit: 5,
+          },
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+
+        if (response.status === 200) {
+          setPopularArtists(response.data.artists.items);
+        } else {
+          console.error(
+            "Failed to fetch popular artists:",
+            response.statusText
+          );
+        }
+      } catch (error) {
+        console.error("Error fetching popular artists:", error);
+      }
+    };
+
+    if (accessToken) {
+      fetchPopularArtists();
+    }
+  }, [accessToken]);
 
   return (
     <div>
-      <Navbar/>
-      <h1>New Album Releases</h1>
+      <Navbar />
+      <br />
+
       <div>
-        {albums.map(album => (
-          <div key={album.id}>
-            <h2>{album.name}</h2>
-            <img src={album.images[0].url} alt={album.name} />
+        {" "}
+        {/* SHOW NEW RELEASES ON THE HOME PAGE */} <h2>New Releases: </h2>
+        {newReleasesData.albums &&
+          newReleasesData.albums.items.map((oneAlbum) => (
+            <div key={oneAlbum.id} className="album-card">
+              <img
+                src={oneAlbum.images[0].url}
+                alt={oneAlbum.name}
+                width={300}
+              />
+              <p>Album name: {oneAlbum.name}</p>
+              <p>Tracks: {oneAlbum.total_tracks}</p>
+            </div>
+          ))}
+      </div>
+
+      <div>
+        {" "}
+        {/* SHOW TOP ARTISTS ON THE HOME PAGE */} <h2>Top Artists: </h2>
+        {popularArtists.map((oneArtist) => (
+          <div key={oneArtist.id} className="album-card">
+            <img
+              src={oneArtist.images[0].url}
+              alt={oneArtist.name}
+              width={300}
+            />
+            <p>{oneArtist.name}</p>
+            <p>Popularity rating: {oneArtist.popularity}</p>
           </div>
         ))}
       </div>
@@ -43,4 +140,4 @@ function App() {
   );
 }
 
-export default App;
+export default Homepage;

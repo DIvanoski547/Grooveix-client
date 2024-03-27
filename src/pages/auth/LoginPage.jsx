@@ -3,6 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 import authService from "../../services/auth.service";
 import Navbar from "../../components/Navbar";
+import Container from "react-bootstrap/esm/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const LoginPage = () => {
   const [user, setUser] = useState({ email: "", password: "" });
@@ -34,40 +37,53 @@ const LoginPage = () => {
       });
   };
   return (
-    <>
+    <div className="bg-lila">
+      <div className="wrap-container">
+        <div className="wrap">
+          <form onSubmit={handleSubmit} className="loginForm">
+            <div className="text-light">
+              <h1><b> Login</b> </h1>
+              <div className="my-3">
    
-      <form onSubmit={handleSubmit} className="loginForm">
-        <div>
-          <h1>Login</h1>
-          <label>Email</label>
-          <br />
-          <input
-            type="email"
-            name="email"
-            value={user.email}
-            onChange={handleChange}
-          />
-          <br />
-          <label>Password</label>
-          <br />
-          <input
-            type="password"
-            name="password"
-            value={user.password}
-            onChange={handleChange}
-          />
-          <br />
-        </div>
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-        <button type="submit">Login</button>
-        <br />
+                  <input
+                   className="form-control"
+                    type="email"
+                    name="email"
+                    value={user.email}
+                    onChange={handleChange}
 
-        <Link to={"/"}>
-          <button>Back </button>
-        </Link>
-      </form>
-    </>
+                    placeholder="user@email.com"
+                  />
+               
+              </div>
+
+              <div>
+          
+                  <input
+                  className="form-control"
+                    type="password"
+                    name="password"
+                    value={user.password}
+                    onChange={handleChange}
+                    placeholder="***********"
+                  />
+               
+              </div>
+            </div>
+            {errorMessage && <p className="error-message text-danger mt-3">{errorMessage}</p>}
+            <button type="submit" className="btn-magenta m-3">
+              Login
+            </button>
+            <br />
+
+            <Link to={"/"}>
+              <button className="btn-magenta">Back </button>
+            </Link>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default LoginPage;
+export default LoginPage;
