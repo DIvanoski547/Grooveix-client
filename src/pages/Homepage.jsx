@@ -8,6 +8,7 @@ const client_secret = "75daf3ab6adc4ff88c150744a952a965";
 function Homepage() {
   const [token, setToken] = useState("");
   const [newReleasesData, setNewReleasesData] = useState([]);
+  const [popularArtists, setPopularArtists] = useState([]);
   const accessToken = token;
 
   // USE EFFECT TO ACCESS TOKEN FROM SPOTIFY API
@@ -44,7 +45,7 @@ function Homepage() {
           "https://api.spotify.com/v1/browse/new-releases",
           {
             params: {
-              limit: 5
+              limit: 5,
             },
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -65,19 +66,76 @@ function Homepage() {
     fetchNewreleasesData();
   }, [accessToken]);
 
+  //USE EFFECT TO RETRIVE POLULAR ARTISTS FROM SPOTIFY API
+  useEffect(() => {
+    const fetchPopularArtists = async () => {
+      try {
+        const response = await axios.get("https://api.spotify.com/v1/search", {
+          params: {
+            q: 'genre:"pop"',
+            type: "artist",
+            limit: 5,
+          },
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+
+        if (response.status === 200) {
+          setPopularArtists(response.data.artists.items);
+        } else {
+          console.error(
+            "Failed to fetch popular artists:",
+            response.statusText
+          );
+        }
+      } catch (error) {
+        console.error("Error fetching popular artists:", error);
+      }
+    };
+
+    if (accessToken) {
+      fetchPopularArtists();
+    }
+  }, [accessToken]);
+
   return (
     <div>
       <Navbar />
       <br />
-      {/* SHOW NEW RELEASES ON THE HOME PAGE */}
-      <h2>New Releases: </h2>
-      {newReleasesData.albums && newReleasesData.albums.items.map(oneAlbum => (
-      <div key={oneAlbum.id} className="album-card">
-        <img src={oneAlbum.images[0].url} alt={oneAlbum.name} />
-        <p>Album name: {oneAlbum.name}</p>
-        <p>Tracks: {oneAlbum.total_tracks}</p>
+
+      <div>
+        {" "}
+        {/* SHOW NEW RELEASES ON THE HOME PAGE */} <h2>New Releases: </h2>
+        {newReleasesData.albums &&
+          newReleasesData.albums.items.map((oneAlbum) => (
+            <div key={oneAlbum.id} className="album-card">
+              <img
+                src={oneAlbum.images[0].url}
+                alt={oneAlbum.name}
+                width={300}
+              />
+              <p>Album name: {oneAlbum.name}</p>
+              <p>Tracks: {oneAlbum.total_tracks}</p>
+            </div>
+          ))}
       </div>
-    ))}
+
+      <div>
+        {" "}
+        {/* SHOW TOP ARTISTS ON THE HOME PAGE */} <h2>Top Artists: </h2>
+        {popularArtists.map((oneArtist) => (
+          <div key={oneArtist.id} className="album-card">
+            <img
+              src={oneArtist.images[0].url}
+              alt={oneArtist.name}
+              width={300}
+            />
+            <p>{oneArtist.name}</p>
+            <p>Popularity rating: {oneArtist.popularity}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
