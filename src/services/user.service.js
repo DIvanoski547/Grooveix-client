@@ -20,19 +20,19 @@ class UserService {
   }
 
   getUsers = () => {
-    return this.api.get("/api/all-users");
+    return this.api.get("/users");
   };
 
-  addUser = (requestBody) => {
-    return this.api.post("/api/all-users", requestBody);
-  };
+  // addUser = (requestBody) => {
+  //   return this.api.post("/users", requestBody);
+  // };
 
   getProfile = () => {
-    return this.api.get("/api/profile");
+    return this.api.get("/profile");
   };
 
   viewUser = () => {
-    return this.api.get("/api/users/:userId");
+    return this.api.get("/users/:userId");
   };
 }
 

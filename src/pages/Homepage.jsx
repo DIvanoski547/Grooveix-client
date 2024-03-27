@@ -29,6 +29,7 @@ function App() {
 
   return (
     <div>
+      <Navbar/>
       <h1>New Album Releases</h1>
       <div>
         {albums.map(album => (
