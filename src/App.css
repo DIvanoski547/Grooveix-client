@@ -41,7 +41,7 @@
   color: #888;
 }
 
-.album_card {
+.album-card {
   width: 400px;
   padding: 10px;
   box-shadow: 0px 2px 3px grey;
@@ -49,4 +49,5 @@
   margin-bottom: 20px;
   background: lightgray;
   border-radius: 4px;
+  
 }
