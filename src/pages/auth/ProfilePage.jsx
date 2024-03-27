@@ -10,45 +10,44 @@ function ProfilePage() {
   const [profileImage, setProfileImage] = useState("");
   const [showUpload, setShowUpload] = useState(false);
 
-  
-  
   // ******** this method handles the file upload ********
   const handleFileUpload = (e) => {
     console.log("The file to be uploaded is: ", e.target.files[0]);
- 
+
     const uploadData = new FormData();
- 
+
     // imageUrl => this name has to be the same as in the model since we pass
     // req.body to .create() method when creating a new movie in '/api/movies' POST route
     uploadData.append("profileImage", e.target.files[0]);
- 
+
     userService
       .uploadProfileImage(uploadData)
-      .then(response => {
+      .then((response) => {
         console.log("response is: ", response);
         // response carries "fileUrl" which we can use to update the state
         setProfileImage(response.profileImageUrl);
-
       })
       .then(() => {
-        console.log("update file", profileImage)
+        console.log("updated file", profileImage);
       })
-      .catch(err => console.log("Error while uploading the file: ", err));
+      .catch((err) => console.log("Error while uploading the file: ", err));
   };
- 
+
   // ********  this method submits the form ********
   const handleSubmit = (e) => {
     e.preventDefault();
- 
+
     userService
       .updateProfile({ profileImage })
-      .then(res => {
-        console.log("updated user", res);
-        setUser(res)
+      .then((res) => {
+        const updatedUser = res.updatedUser;
+        console.log("updated user", res.updatedUser);
+        console.log("res.data", res.updatedUser);
+        setUser(updatedUser);
         setProfileImage("");
-        setShowUpload(false)
+        setShowUpload(false);
       })
-      .catch(err => console.log("Error while updating profile: ", err));
+      .catch((err) => console.log("Error while updating profile: ", err));
   };
 
   return (
@@ -59,18 +58,18 @@ function ProfilePage() {
         <p>{user.firstName}</p>
         <p>{user.lastName}</p>
 
-        {!isAdmin && (
-          <img
-            src={user.profileImage}
-            alt={"profile_image"}
-            style={{ width: "50px", height: "50px", borderRadius: "75%" }}
-          />
-        ) 
-        }
-        {!showUpload && (
-          <button onClick={() => setShowUpload(!showUpload)}>
-            Change Profile Image
-          </button>
+        {!isAdmin && !showUpload && (
+          <>
+            <img
+              src={user.profileImage}
+              alt={"profile_image"}
+              style={{ width: "100px", height: "100px", borderRadius: "75%" }}
+            />
+
+            <button onClick={() => setShowUpload(!showUpload)}>
+              Change Profile Image
+            </button>
+          </>
         )}
       </div>
       <div>
@@ -100,7 +99,6 @@ function ProfilePage() {
           </>
         )}
       </div>
-
     </div>
   );
 }
