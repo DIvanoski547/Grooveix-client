@@ -19,27 +19,27 @@ class AlbumsService {
     });
   }
 
-  // POST /api/album
+  // POST /albums
   createAlbum = (requestBody) => {
     return this.api.post("/albums", requestBody);
   };
 
-  // GET /api/albums
+  // GET /albums
   getAllAlbums = () => {
     return this.api.get("/albums");
   };
 
-  // GET /api/albums/:id
+  // GET /albums/:id
   getAlbum = (albumId) => {
     return this.api.get(`/albums/${albumId}`);
   };
 
-  // PUT /api/albums/:id
+  // PUT /albums/:id
   updateAlbum = (albumId, requestBody) => {
     return this.api.put(`/albums/${albumId}`, requestBody);
   };
 
-  // DELETE /api/albums/:id
+  // DELETE /albums/:id
   deleteAlbum = (albumId) => {
     return this.api.delete(`/albums/${albumId}`);
   };

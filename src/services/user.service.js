@@ -3,7 +3,7 @@ import axios from "axios";
 class UserService {
   constructor() {
     this.api = axios.create({
-      baseURL: "http://localhost:5005",
+      baseURL: import.meta.env.SERVER_URL || "http://localhost:5005",
     });
 
     // Automatically set JWT token in the headers for every request
@@ -19,6 +19,11 @@ class UserService {
     });
   }
 
+
+  uploadProfileImage = (image) => {
+    return this.api.post("/users/profile/image-upload", image)
+  }
+
   getUsers = () => {
     return this.api.get("/users");
   };
@@ -28,11 +33,15 @@ class UserService {
   // };
 
   getProfile = () => {
-    return this.api.get("/profile");
+    return this.api.get("/users/profile");
   };
 
-  viewUser = () => {
-    return this.api.get("/users/:userId");
+  updateProfile = (requestBody) => {
+    return this.api.put("/users/profile", requestBody)
+  }
+
+  viewUser = (id) => {
+    return this.api.get(`/users/${id}`);
   };
 }
 
