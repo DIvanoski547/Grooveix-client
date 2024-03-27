@@ -1,44 +1,54 @@
 import { AuthContext } from "../../context/auth.context";
 import { useState, useContext } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import avatarPng from "../../assets/avatar.png";
+import userService from "../../services/user.service";
 
 function ProfilePage() {
   const { user, setUser, isAdmin } = useContext(AuthContext);
-  const [image, setImage] = useState("");
-  // const [imageUpload, setImageUpload] = useState({});
+  const [profileImage, setProfileImage] = useState("");
   const [showUpload, setShowUpload] = useState(false);
 
+  
+  
+  // ******** this method handles the file upload ********
   const handleFileUpload = (e) => {
+    console.log("The file to be uploaded is: ", e.target.files[0]);
+ 
     const uploadData = new FormData();
+ 
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new movie in '/api/movies' POST route
     uploadData.append("profileImage", e.target.files[0]);
-    axios.post("http://localhost:5005/api/profile/image-upload", uploadData)
+ 
+    userService
+      .uploadProfileImage(uploadData)
       .then(response => {
-      setImage(response.data.image)
-    })
-    // setImageUpload(uploadData);
+        console.log("response is: ", response);
+        // response carries "fileUrl" which we can use to update the state
+        setProfileImage(response.profileImageUrl);
 
+      })
+      .then(() => {
+        console.log("update file", profileImage)
+      })
+      .catch(err => console.log("Error while uploading the file: ", err));
   };
-
-  const handleSubmit = async (e) => {
+ 
+  // ********  this method submits the form ********
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const responseCloudinaryUpload = await axios.post(
-      "http://localhost:5005/users/profile/image-upload",
-      image
-    );
-    const responseUserUpdate = await axios.put(
-      "http://localhost:5005/users/profile",
-      { ...user, profileImage: responseCloudinaryUpload.data.image }
-    )
-      .then(response => {
-        setUser(response.data.updatedUser)
-        setImage("")
-    })
-
-  //  setUser(responseUserUpdate.data.updatedUser);
-  //  setShowUpload(false);
+ 
+    userService
+      .updateProfile({ profileImage })
+      .then(res => {
+        console.log("updated user", res);
+        setUser(res)
+        setProfileImage("");
+        setShowUpload(false)
+      })
+      .catch(err => console.log("Error while updating profile: ", err));
   };
 
   return (
@@ -49,19 +59,14 @@ function ProfilePage() {
         <p>{user.firstName}</p>
         <p>{user.lastName}</p>
 
-        {!isAdmin && user.profileImage ? (
+        {!isAdmin && (
           <img
             src={user.profileImage}
             alt={"profile_image"}
             style={{ width: "50px", height: "50px", borderRadius: "75%" }}
           />
-        ) : (
-          <img
-            src={avatarPng}
-            alt={"profile_image"}
-            style={{ width: "50px", height: "50px", borderRadius: "75%" }}
-          />
-        )}
+        ) 
+        }
         {!showUpload && (
           <button onClick={() => setShowUpload(!showUpload)}>
             Change Profile Image
@@ -95,6 +100,7 @@ function ProfilePage() {
           </>
         )}
       </div>
+
     </div>
   );
 }

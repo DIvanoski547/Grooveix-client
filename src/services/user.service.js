@@ -17,15 +17,19 @@ class UserService {
 
       return config;
     });
-  }
+  };
 
 
-  uploadProfileImage = (image) => {
-    return this.api.post("/users/profile/image-upload", image)
+  uploadProfileImage = (file) => {
+    return this.api.post("/users/profile/image-upload", file)
+    .then(res => res.data)
+    .catch(err => { throw err });
   }
 
   getUsers = () => {
-    return this.api.get("/users");
+    return this.api.get("/users")
+    .then(res => res.data)
+    .catch(err => { throw err });
   };
 
   // addUser = (requestBody) => {
@@ -33,15 +37,21 @@ class UserService {
   // };
 
   getProfile = () => {
-    return this.api.get("/users/profile");
+    return this.api.get("/users/profile")
+    .then(res => res.data)
+    .catch(err => { throw err });
   };
 
-  updateProfile = (requestBody) => {
-    return this.api.put("/users/profile", requestBody)
+  updateProfile = (updatedUser) => {
+    return this.api.post("/users/profile", updatedUser)
+    .then(res => res.data)
+    .catch(err => { throw err });
   }
 
   viewUser = (id) => {
-    return this.api.get(`/users/${id}`);
+    return this.api.get(`/users/${id}`)
+    .then(res => res.data)
+    .catch(err => { throw err });
   };
 }
 
