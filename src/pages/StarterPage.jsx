@@ -7,7 +7,10 @@ import Button from 'react-bootstrap/Button';
 
 function StarterPage() {
   return (
-    <Container className="justify-content-md-center">
+    <div className="bg-lila">
+
+      <div className="wrap-container">
+    <Container className="wrap">
       <Row>
         <Col>
           <Image src="./src/assets/logo-img.jpg" alt="" className="img-wrap" rounded />
@@ -30,6 +33,10 @@ function StarterPage() {
         </Col>
       </Row>
     </Container>
+      </div>
+  
+    </div>
+  
   );
 }
 
