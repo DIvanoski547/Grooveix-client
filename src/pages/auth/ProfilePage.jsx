@@ -25,11 +25,11 @@ function ProfilePage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const responseCloudinaryUpload = await axios.post(
-      "http://localhost:5005/api/profile/image-upload",
+      "http://localhost:5005/users/profile/image-upload",
       image
     );
     const responseUserUpdate = await axios.put(
-      "http://localhost:5005/api/profile",
+      "http://localhost:5005/users/profile",
       { ...user, profileImage: responseCloudinaryUpload.data.image }
     )
       .then(response => {

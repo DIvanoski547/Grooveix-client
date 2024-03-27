@@ -21,27 +21,27 @@ class AlbumsService {
 
   // POST /api/album
   createAlbum = (requestBody) => {
-    return this.api.post("/api/albums", requestBody);
+    return this.api.post("/albums", requestBody);
   };
 
   // GET /api/albums
   getAllAlbums = () => {
-    return this.api.get("/api/albums");
+    return this.api.get("/albums");
   };
 
   // GET /api/albums/:id
   getAlbum = (albumId) => {
-    return this.api.get(`/api/albums/${albumId}`);
+    return this.api.get(`/albums/${albumId}`);
   };
 
   // PUT /api/albums/:id
   updateAlbum = (albumId, requestBody) => {
-    return this.api.put(`/api/albums/${albumId}`, requestBody);
+    return this.api.put(`/albums/${albumId}`, requestBody);
   };
 
   // DELETE /api/albums/:id
   deleteAlbum = (albumId) => {
-    return this.api.delete(`/api/albums/${albumId}`);
+    return this.api.delete(`/albums/${albumId}`);
   };
 }
 
