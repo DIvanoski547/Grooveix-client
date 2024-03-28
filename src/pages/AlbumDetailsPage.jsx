@@ -44,7 +44,7 @@ function AlbumDetailPage() {
 
           
           <h2>Reviews</h2>
-{/* 
+              {/* 
           {reviews.length > 0 ? (
             <ul>
               {reviews.map((review) => (
@@ -60,6 +60,7 @@ function AlbumDetailPage() {
           )}
         </>
       )}
+            */}
       <Link to="/homepage">
         <button>Back</button>
       </Link>
