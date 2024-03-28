@@ -131,12 +131,14 @@ function Homepage() {
       <div>
         <h3>Album list:</h3>
         {albums.map((album) => (
-          <Link to={`/albums/${album._id}`} key={album._id}>
-            <div className="album-card">
-              <img src={album.albumImage} alt={album.albumName} />
-              <h2>{album.albumName}</h2>
-            </div>
-          </Link>
+          <div className="card-wrapper">
+            <Link to={`/albums/${album._id}`} key={album._id}>
+              <div className="album-card">
+                <img src={album.albumImage} alt={album.albumName} />
+                <h2>{album.albumName}</h2>
+              </div>
+            </Link>
+          </div>
         ))}
       </div>
 
@@ -167,7 +169,6 @@ function Homepage() {
           </div>
         ))}
       </div>
-
     </div>
   );
 }

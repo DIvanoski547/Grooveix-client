@@ -53,7 +53,8 @@ function ProfilePage() {
   return (
     <div>
       <Navbar />
-      <div>
+      <div className="profile-card mt-3">
+        <img src={user.profileImage} alt="profile_img" />
         <p>{user.username}</p>
         <p>{user.firstName}</p>
         <p>{user.lastName}</p>
@@ -86,12 +87,14 @@ function ProfilePage() {
       <div>
         {isAdmin ? (
           <>
-            <button>
-              <Link to="/all-users"> View all users</Link>
-            </button>{" "}
-            <button>
-              <Link to="/albums"> View all albums</Link>
-            </button>
+            <Link to="/all-users">
+              {" "}
+              <button className="btn-magenta m-3">View all users</button>
+            </Link>{" "}
+            <Link to="/albums">
+              {" "}
+              <button className="btn-magenta m-3"> View all albums</button>
+            </Link>
           </>
         ) : (
           <>

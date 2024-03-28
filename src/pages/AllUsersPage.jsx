@@ -11,11 +11,10 @@ function AllUsersPage() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-      userService.getUsers()
-        .then((response) => {
-            console.log("users", response)
-          setUsers(response)
-      })
+    userService.getUsers().then((response) => {
+      console.log("users", response);
+      setUsers(response);
+    });
   }, []);
 
   return (
@@ -23,13 +22,14 @@ function AllUsersPage() {
       <Navbar />
       <br />
       {users.map((user) => (
-        <UserCard key={user._id} {...user} />
+        <div className="album-card">
+          <UserCard key={user._id} {...user} />
+        </div>
       ))}
-      <button>
-          <Link to={"/profile"}>
-            Back
-          </Link>
-        </button>
+
+      <Link to={"/profile"}>
+        <button className="btn-magenta m-3">Back</button>
+      </Link>
     </>
   );
 }

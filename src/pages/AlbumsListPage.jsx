@@ -23,24 +23,25 @@ function AlbumsListPage() {
       <h3>Album list:</h3>
 
       {albums.map((album) => (
-        <Link to={`/albums/${album._id}`} key={album._id}>
-          <div className="album-card">
-            <img
-              src={album.albumImage}
-              alt={album.albumName}
-            />{" "}
-            <h2>{album.albumName}</h2>
-          </div>
-        </Link>
+        <div className="card-wrapper" key={album._id}>
+          <Link to={`/albums/${album._id}`}>
+            <div className="album-card">
+              <img src={album.albumImage} alt={album.albumName} />{" "}
+              <h2>{album.albumName}</h2>
+            </div>
+          </Link>
+        </div>
       ))}
 
-      <button>
-        <Link to="/albums/create-album">Create New Album</Link>
-      </button>
+      <Link to="/albums/create-album">
+        <button className="btn-magenta m-3">Create New Album</button>
+      </Link>
+
       <br />
-      <button>
-        <Link to="/profile">Back</Link>
-      </button>
+
+      <Link to="/profile">
+        <button className="btn-magenta m-3">Back </button>
+      </Link>
     </>
   );
 }
