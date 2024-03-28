@@ -6,6 +6,25 @@ function AlbumCreatePage() {
   const [albumImage, setAlbumImage] = useState("");
   const [albumName, setAlbumName] = useState("");
   const [artistsNames, setArtistsNames] = useState("");
+  const [errorMessage, setErrorMessage] = useState(undefined);
+  const [isUploadingAlbumImage, setIsUploadingAlbumImage] = useState(false);
+
+  //handle file upload for albumImage
+  const handleFileUpload = async (element) => {
+    console.log("The file to be uploaded is:", element.target.files[0]);
+    const uploadData = new FormData();
+    uploadData.append("albumImage", element.target.files[0]);
+
+    try {
+      setIsUploadingAlbumImage(true);
+      const response = await albumsService.uploadAlbumImage(uploadData);
+      console.log("response", response)
+      setAlbumImage(response.albumImage);
+      setIsUploadingAlbumImage(false);
+    } catch (err) {
+      console.log("Error occured while uploading album image", err);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,14 +45,14 @@ function AlbumCreatePage() {
       <h2>Create new albums</h2>
 
       <form onSubmit={handleSubmit}>
+        <label htmlFor="albumImage">Album Image:</label>
         <input
           type="file"
           name="albumImage"
-          value={albumImage}
-          onChange={(e) => setAlbumImage(e.target.value)}
+          onChange={(e) => handleFileUpload(e)}
         />
         <br />
-        <label>AlbumName:</label>
+        <label>Album Name:</label>
         <input
           type="text"
           name="albumName"
@@ -49,7 +68,7 @@ function AlbumCreatePage() {
           onChange={(e) => setArtistsNames(e.target.value)}
         />
         <br />
-        <button type="submit">Submit</button>
+        {!isUploadingAlbumImage ? <button type="submit">Add Album</button> : <button type="submit" disabled>Uploading album image...</button>}
       </form>
       <Link to="/albums">
         <button>Back</button>

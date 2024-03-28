@@ -19,6 +19,15 @@ class AlbumsService {
     });
   }
 
+  //upload file route
+  uploadAlbumImage = (file) => {
+    return this.api
+      .post("/albums/image-upload", file)
+      .then((res) => res.data)
+      .catch((err) => {
+        throw err;
+      });
+  };
   // POST /albums
   createAlbum = (requestBody) => {
     return this.api.post("/albums", requestBody);
