@@ -1,40 +1,52 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import Nav from 'react-bootstrap/Nav';
 
 
 function Navbar() {
   const { user, isLoggedIn, logOutUser } = useContext(AuthContext);
   return (
+
+    <div className="py-3 nav-opacity">
+
     <nav>
+
+<img src="./src/assets/logo-img.jpg" alt="" className="nav-logo"/>
+
       <Link to="/homepage">
-        <button>Home</button>
+        <button className="btn-nav">Home</button>
       </Link>
 
       {isLoggedIn ? (
         <>
           <Link to="/profile">
             {" "}
-            <button>Profile</button>{" "}
+            <button className="btn-nav">Profile</button>{" "}
           </Link>
-          <button onClick={logOutUser}>
-            <Link to="/">Logout</Link>
-          </button>
+        
+            <Link to="/">
+              <button onClick={logOutUser} className="btn-nav">  
+              Logout
+              
+              </button>
+              </Link>
+          
         </>
       ) : (
         <>
           <Link to="/signup">
             {" "}
-            <button>Sign Up</button>{" "}
+            <button className="btn-nav">Sign Up</button>{" "}
           </Link>
           <Link to="/login">
             {" "}
-            <button>Login</button>{" "}
+            <button className="btn-nav">Login</button>{" "}
           </Link>
         </>
       )}
     </nav>
+
+    </div>
   );
 }
 
