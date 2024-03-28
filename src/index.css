@@ -122,6 +122,45 @@ nav a {
   height: 70px;
 }
 
+.btn-delete{
+  background-color: rgb(244, 127, 106);
+  outline: none;
+  cursor: pointer;
+  border-radius: 15px;
+  width: 200px;
+  /* padding: 10px 100px; */
+ 
+}
+
+.btn-back{
+  background-color: gray;
+  outline: none;
+  cursor: pointer;
+  border-radius: 15px;
+  width: 200px;
+  /* padding: 10px 100px; */
+ 
+}
+
+.btn-add{
+  background-color: rgb(174, 215, 174);
+  outline: none;
+  cursor: pointer;
+  border-radius: 15px;
+  width: 200px;
+}
+
+
+.btn-edit{
+  background-color: rgb(64, 126, 181);
+  outline: none;
+  cursor: pointer;
+  border-radius: 15px;
+  width: 200px;
+}
+
+
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

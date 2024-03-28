@@ -63,38 +63,58 @@ function AlbumEditPage() {
 
   return (
     <>
-      <h1>Album edit page:</h1>
+      <h1 className="text-light pt-2 m-0">Edit Album</h1>
+      <div className="wrap-container text-light ">
+        <div className="wrap">
+
       <form onSubmit={handleSubmitForm}>
-        <label htmlFor="albumImage">Album Image:</label><br/>
-        <img src={albumImage} alt="album_img" width={300} height={300} /><br/>
+        {/* <label htmlFor="albumImage">Album Image</label><br/> */}
+        <img src={albumImage} alt="album_img" width={250} height={250} /><br/>
         <input
+            className="form-control my-2"
           type="file"
           name="albumImage"
           onChange={(e) => handleFileUpload(e)}
         />
-        <br />
-        <label>AlbumName:</label><br/>
+   
+        <label>Album name </label><br/>
         <input
+            className="form-control my-2"
           type="text"
           name="albumName"
           value={albumName}
           onChange={(e) => setAlbumName(e.target.value)}
         />
-        <br />
-        <label>Artists Names:</label><br/>
+        
+        <label className="">Artists names</label><br/>
         <input
+            className="form-control my-2"
           type="text"
           name="artistsNames"
           value={artistsNames}
           onChange={(e) => setArtistsNames(e.target.value)}
         />
-        <br />
-        <button type="submit">Update Album</button>
+       <button type="submit" className="btn-magenta my-2">Update Album</button>
+
+        
       </form>
-      <button onClick={deleteAlbum}>Delete Album</button>
-      <button>
-        <Link to={`/albums/${albumId}`}>Back</Link>
-      </button>
+      <button onClick={deleteAlbum} className="btn-delete mx-2">Delete Album</button>
+ 
+
+    
+        <Link to={`/albums/${albumId}`}>
+            <button className="btn-back my-2">
+          Back
+          
+             </button>
+          </Link>
+   
+      </div>
+      </div>
+      
+      
+
+
     </>
   );
 }

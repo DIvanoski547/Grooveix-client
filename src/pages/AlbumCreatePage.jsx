@@ -41,37 +41,48 @@ function AlbumCreatePage() {
 
   return (
     <>
-      <h2>Create new albums</h2>
+          <div className="wrap-container text-light">
+        <div className="wrap">
+      <h2>Create new album</h2>
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor="albumImage">Album Image:</label>
+        <label htmlFor="albumImage">Album image</label>
         <input
+         className="form-control mb-2"
           type="file"
           name="albumImage"
           onChange={(e) => handleFileUpload(e)}
         />
-        <br />
-        <label>Album Name:</label>
+        
+        <label>Album name</label>
         <input
+         className="form-control mb-2"
           type="text"
           name="albumName"
           value={albumName}
           onChange={(e) => setAlbumName(e.target.value)}
         />
-        <br />
-        <label>Artists Names:</label>
+   
+        <label>Artists names</label>
         <input
+         className="form-control mb-2"
           type="text"
           name="artistsNames"
           value={artistsNames}
           onChange={(e) => setArtistsNames(e.target.value)}
         />
-        <br />
-        {!isUploadingAlbumImage ? <button type="submit">Add Album</button> : <button type="submit" disabled>Uploading album image...</button>}
-      </form>
-      <Link to="/albums">
-        <button>Back</button>
+     
+        {!isUploadingAlbumImage ? <button type="submit" className="btn-add m-2">Add Album</button> : <button type="submit" disabled>Uploading album image...</button>}
+       <Link to="/albums">
+        <button className="btn-back m-2">Back</button>
       </Link>
+     
+      </form>
+
+    
+
+      </div>
+      </div>
     </>
   );
 }
