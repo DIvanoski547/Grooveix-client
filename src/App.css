@@ -49,5 +49,8 @@
   margin-bottom: 20px;
   background: lightgray;
   border-radius: 4px;
-  
+}
+
+.album-card img {
+  width: 350px;
 }

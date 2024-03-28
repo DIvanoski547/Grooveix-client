@@ -24,10 +24,10 @@ function AlbumsListPage() {
 
       {albums.map((album) => (
         <Link to={`/albums/${album._id}`} key={album._id}>
-          <div className="album_card">
+          <div className="album-card">
             <img
               src={album.albumImage}
-              alt="album_img"
+              alt={album.albumName}
               width={300}
               height={300}
             />{" "}
