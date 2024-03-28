@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Link, useParams } from "react-router-dom";
 
 const client_id = "c60f0049bfc041a5a26d2fb2e1cef823";
 const client_secret = "75daf3ab6adc4ff88c150744a952a965";
@@ -8,7 +8,7 @@ const client_secret = "75daf3ab6adc4ff88c150744a952a965";
 const ArtistInfo = () => {
   const [token, setToken] = useState("");
   const [artist, setArtist] = useState(null);
-  const {id} = useParams();
+  const { artistId } = useParams();
   const accessToken = token;
 
   // USE EFFECT TO RETRIVE THE TOKEN FROM SPOTIFY API
@@ -41,24 +41,29 @@ const ArtistInfo = () => {
   useEffect(() => {
     const fetchArtist = async () => {
       try {
-        const response = await axios.get(`https://api.spotify.com/v1/artists/${id}`, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
+        const response = await axios.get(
+          `https://api.spotify.com/v1/artists/${artistId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
 
         if (response.status === 200) {
+          console.log(response, "response data");
           setArtist(response.data);
-        } else {
-          console.error('Failed to fetch artist:', response.statusText);
         }
+        //  else {
+        //   console.error('Failed to fetch artist:', response.statusText);
+        // }
       } catch (error) {
-        console.error('Error fetching artist:', error);
+        console.error("Error fetching artist:", error);
       }
     };
 
     fetchArtist();
-  }, [id]);
+  }, [artistId]);
 
   if (!artist) {
     return <div>Loading...</div>;
@@ -66,11 +71,18 @@ const ArtistInfo = () => {
 
   return (
     <div>
-      <h2>{artist.name}</h2>
-      <p>Followers: {artist.followers.total}</p>
-      <p>Genres: {artist.genres.join(', ')}</p>
-      <p>Popularity: {artist.popularity}</p>
-      <img src={artist.images[0].url} alt={artist.name} />
+      <div className="mb-3">
+        <h2>{artist.name}</h2>
+        <img src={artist.images[0].url} alt={artist.name} />
+        <p>Followers: {artist.followers.total}</p>
+        <p>Genres: {artist.genres.join(", ")}</p>
+        <p>Popularity: {artist.popularity}</p>
+      </div>
+
+      <Link to={"/homepage"}>
+        {" "}
+        <button className="btn-magenta">Back</button>
+      </Link>
     </div>
   );
 };
