@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import UserCard from "../components/UserCard";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
-import userService from "../services/user.service";
+import userService from "../services/users.service";
 
 // const API_URI = "http://localhost:5005";
 
@@ -11,11 +11,10 @@ function AllUsersPage() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-      userService.getUsers()
-        .then((response) => {
-            console.log("users", response)
-          setUsers(response)
-      })
+    userService.getUsers().then((response) => {
+      console.log("users", response);
+      setUsers(response);
+    });
   }, []);
 
   return (
@@ -26,10 +25,8 @@ function AllUsersPage() {
         <UserCard key={user._id} {...user} />
       ))}
       <button>
-          <Link to={"/profile"}>
-            Back
-          </Link>
-        </button>
+        <Link to={"/profile"}>Back</Link>
+      </button>
     </>
   );
 }

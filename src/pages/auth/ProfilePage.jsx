@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import avatarPng from "../../assets/avatar.png";
-import userService from "../../services/user.service";
+import userService from "../../services/users.service";
 
 function ProfilePage() {
   const { user, setUser, isAdmin } = useContext(AuthContext);
