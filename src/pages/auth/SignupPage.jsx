@@ -83,7 +83,7 @@ const SignupPage = () => {
           />
       
           <input
-           className="form-control "
+           className="form-control"
             type="password"
             name="password"
             value={user.password}

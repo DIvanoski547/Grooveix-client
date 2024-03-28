@@ -30,8 +30,10 @@ function AlbumDetailPage() {
       <Navbar />
       {album && (
         <>
-          <br />
-          <img
+         <div className="wrap-container text-light">
+          <div className="wrap">
+<h1>Album details</h1>
+            <img
             src={album.albumImage}
             alt="album_img"
             width={300}
@@ -54,14 +56,25 @@ function AlbumDetailPage() {
           ) : (
             <p>No reviews available</p>
           )}
-        </>
-      )}
-      <Link to="/homepage">
-        <button>Back</button>
+          
+           <Link to="/homepage">
+        <button className="btn-back m-2">Back</button>
       </Link>
       <Link to={`/albums/edit/${albumId}`}>
-        <button>Edit</button>
+        <button className="btn-edit m-2">Edit</button>
       </Link>
+          </div>
+
+      
+         
+         
+         
+         </div>
+    
+
+        </>
+      )}
+     
     </>
   );
 }
