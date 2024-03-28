@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import UserCard from "../components/UserCard";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
-import userService from "../services/user.service";
+import userService from "../services/users.service";
 
 // const API_URI = "http://localhost:5005";
 
@@ -26,10 +26,11 @@ function AllUsersPage() {
           <UserCard key={user._id} {...user} />
         </div>
       ))}
-
-      <Link to={"/profile"}>
-        <button className="btn-magenta m-3">Back</button>
-      </Link>
+      <button>
+          <Link to={"/profile"}>
+            Back
+          </Link>
+        </button>
     </>
   );
 }
