@@ -1,48 +1,52 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+
 
 function Navbar() {
   const { user, isLoggedIn, logOutUser } = useContext(AuthContext);
   return (
-    <nav className="p-3 mb-3 border-bottom">
-      <div className="container">
-        <div d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start>
-          <a href="/homepage" className="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-            <svg className="bi me-2"></svg>
-          </a>
-          <div>
-            <NavLink to="/homepage">
-              <button>Home</button>
-            </NavLink>
 
-            {isLoggedIn ? (
-              <>
-                <NavLink to="/profile">
-                  {" "}
-                  <button>Profile</button>{" "}
-                </NavLink>
+    <div className="py-3 nav-opacity">
 
-                <NavLink to="/">
-                  <button onClick={logOutUser}>Logout</button>
-                </NavLink>
-              </>
-            ) : (
-              <>
-                <NavLink to="/signup">
-                  {" "}
-                  <button>Sign Up</button>{" "}
-                </NavLink>
-                <NavLink to="/login">
-                  {" "}
-                  <button>Login</button>{" "}
-                </NavLink>
-              </>
-            )}
-          </div>
-        </div>
-      </div>
+    <nav>
+
+<img src="./src/assets/logo-img.jpg" alt="" className="nav-logo"/>
+
+      <Link to="/homepage">
+        <button className="btn-nav">Home</button>
+      </Link>
+
+      {isLoggedIn ? (
+        <>
+          <Link to="/profile">
+            {" "}
+            <button className="btn-nav">Profile</button>{" "}
+          </Link>
+        
+            <Link to="/">
+              <button onClick={logOutUser} className="btn-nav">  
+              Logout
+              
+              </button>
+              </Link>
+          
+        </>
+      ) : (
+        <>
+          <Link to="/signup">
+            {" "}
+            <button className="btn-nav">Sign Up</button>{" "}
+          </Link>
+          <Link to="/login">
+            {" "}
+            <button className="btn-nav">Login</button>{" "}
+          </Link>
+        </>
+      )}
     </nav>
+
+    </div>
   );
 }
 

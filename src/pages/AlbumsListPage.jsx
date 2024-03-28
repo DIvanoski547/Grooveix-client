@@ -28,10 +28,7 @@ function AlbumsListPage() {
             <img
               src={album.albumImage}
               alt={album.albumName}
-              width={300}
-              height={300}
             />{" "}
-            {/* INLINE CODE TO NE REMOVED LATER */}
             <h2>{album.albumName}</h2>
           </div>
         </Link>
