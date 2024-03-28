@@ -12,8 +12,9 @@ function AllUsersPage() {
 
   useEffect(() => {
       userService.getUsers()
-          .then((response) => {
-          setUsers(response.data)
+        .then((response) => {
+            console.log("users", response)
+          setUsers(response)
       })
   }, []);
 

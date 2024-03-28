@@ -56,8 +56,8 @@ function AlbumDetailPage() {
           )}
         </>
       )}
-      <Link to="/albums">
-        <button>Back to albums</button>
+      <Link to="/homepage">
+        <button>Back</button>
       </Link>
       <Link to={`/albums/edit/${albumId}`}>
         <button>Edit</button>
