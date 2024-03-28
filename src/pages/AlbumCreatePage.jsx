@@ -6,7 +6,6 @@ function AlbumCreatePage() {
   const [albumImage, setAlbumImage] = useState("");
   const [albumName, setAlbumName] = useState("");
   const [artistsNames, setArtistsNames] = useState("");
-  const [errorMessage, setErrorMessage] = useState(undefined);
   const [isUploadingAlbumImage, setIsUploadingAlbumImage] = useState(false);
 
   //handle file upload for albumImage

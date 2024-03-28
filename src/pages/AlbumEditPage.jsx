@@ -1,14 +1,32 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
-import albumsService from "../services/albums.service";
 import { useEffect, useState } from "react";
+import albumsService from "../services/albums.service";
 
 function AlbumEditPage() {
   const [albumImage, setAlbumImage] = useState("");
   const [albumName, setAlbumName] = useState("");
   const [artistsNames, setArtistsNames] = useState("");
+  const [isUploadingAlbumImage, setIsUploadingAlbumImage] = useState(false);
 
   const { albumId } = useParams();
   const navigate = useNavigate();
+
+  //handle file upload for albumImage
+  const handleFileUpload = async (element) => {
+    console.log("The file to be uploaded is:", element.target.files[0]);
+    const uploadData = new FormData();
+    uploadData.append("albumImage", element.target.files[0]);
+
+    try {
+      setIsUploadingAlbumImage(true);
+      const response = await albumsService.uploadAlbumImage(uploadData);
+      console.log("response", response);
+      setAlbumImage(response.albumImage);
+      setIsUploadingAlbumImage(false);
+    } catch (err) {
+      console.log("Error occured while uploading album image", err);
+    }
+  };
 
   useEffect(() => {
     albumsService
@@ -47,9 +65,15 @@ function AlbumEditPage() {
     <>
       <h1>Album edit page:</h1>
       <form onSubmit={handleSubmitForm}>
-        <img src={albumImage} alt="album_img" width={300} height={300} />
+        <label htmlFor="albumImage">Album Image:</label><br/>
+        <img src={albumImage} alt="album_img" width={300} height={300} /><br/>
+        <input
+          type="file"
+          name="albumImage"
+          onChange={(e) => handleFileUpload(e)}
+        />
         <br />
-        <label>AlbumName:</label>
+        <label>AlbumName:</label><br/>
         <input
           type="text"
           name="albumName"
@@ -57,7 +81,7 @@ function AlbumEditPage() {
           onChange={(e) => setAlbumName(e.target.value)}
         />
         <br />
-        <label>Artists Names:</label>
+        <label>Artists Names:</label><br/>
         <input
           type="text"
           name="artistsNames"
