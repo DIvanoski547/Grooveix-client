@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar";
 function AlbumDetailPage() {
   const [album, setAlbum] = useState(null);
   const { albumId } = useParams();
-  const [reviews, setReviews] = useState([]);
+  // const [reviews, setReviews] = useState([]);
 
   const getAlbum = () => {
     albumsService
@@ -15,7 +15,7 @@ function AlbumDetailPage() {
         const oneAlbum = response.data;
         setAlbum(oneAlbum);
         if (oneAlbum && oneAlbum.reviews) {
-          setReviews(oneAlbum.reviews);
+          // setReviews(oneAlbum.reviews);
         }
       })
       .catch((error) => console.log(error));
@@ -23,7 +23,7 @@ function AlbumDetailPage() {
 
   useEffect(() => {
     getAlbum();
-  }, [albumId]);
+  }, []);
 
   return (
     <>
@@ -39,8 +39,10 @@ function AlbumDetailPage() {
           />
           <h1>{album.albumName}</h1>
           <p>{album.artistsNames}</p>
-          <h2>Reviews</h2>
 
+          
+          <h2>Reviews</h2>
+{/* 
           {reviews.length > 0 ? (
             <ul>
               {reviews.map((review) => (
@@ -53,7 +55,7 @@ function AlbumDetailPage() {
             </ul>
           ) : (
             <p>No reviews available</p>
-          )}
+          )} */}
         </>
       )}
       <Link to="/homepage">
