@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
+import albumsService from "../services/albums.service";
+import { Link } from "react-router-dom";
 
 const client_id = "c60f0049bfc041a5a26d2fb2e1cef823";
 const client_secret = "75daf3ab6adc4ff88c150744a952a965";
@@ -9,7 +11,24 @@ function Homepage() {
   const [token, setToken] = useState("");
   const [newReleasesData, setNewReleasesData] = useState([]);
   const [popularArtists, setPopularArtists] = useState([]);
+  const [recommendedSongs, setRecommendedSongs] = useState([]);
   const accessToken = token;
+
+// --------------------GET ALL ALBUMS FROM DATABASE----------------------------//
+const [albums, setAlbums] = useState([]);
+
+  const getAllAlbums = () => {
+    albumsService
+      .getAllAlbums()
+      .then((response) => setAlbums(response.data))
+      .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    getAllAlbums();
+  }, []);
+// ----------------------------------------------------------------------------//
+
 
   // USE EFFECT TO ACCESS TOKEN FROM SPOTIFY API
   useEffect(() => {
@@ -66,7 +85,7 @@ function Homepage() {
     fetchNewreleasesData();
   }, [accessToken]);
 
-  //USE EFFECT TO RETRIVE POLULAR ARTISTS FROM SPOTIFY API
+  //USE EFFECT TO RETRIVE POPULAR ARTISTS FROM SPOTIFY API
   useEffect(() => {
     const fetchPopularArtists = async () => {
       try {
@@ -97,6 +116,43 @@ function Homepage() {
     if (accessToken) {
       fetchPopularArtists();
     }
+  }, [accessToken]);
+
+  // USE EFFECT TO RETRIVE RECOMMENDED POP TRACKS FROM SPOTIFY API
+  useEffect(() => {
+    const fetchRecommendedSongs = async () => {
+      try {
+        const response = await axios.get(
+          "https://api.spotify.com/v1/recommendations",
+          {
+            params: {
+              popularity: ">80",
+              limit: 10,
+              // market: "ES",
+              // seed_artists: "4NHQUGzhtTLFvgF5SZesLK",
+              seed_genres: "pop",
+              // seed_tracks: "0c6xIDDpzE81m2q797ordA",
+            },
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          setRecommendedSongs(response.data.tracks);
+        } else {
+          console.error(
+            "Failed to fetch recommended songs:",
+            response.statusText
+          );
+        }
+      } catch (error) {
+        console.error("Error fetching recommended songs:", error);
+      }
+    };
+
+    fetchRecommendedSongs();
   }, [accessToken]);
 
   return (
@@ -136,6 +192,37 @@ function Homepage() {
           </div>
         ))}
       </div>
+
+      <div>
+        {" "}
+        {/* SHOW TOP ARTISTS ON THE HOME PAGE */} <h2>Recomended Tracks: </h2>
+        {recommendedSongs.map((song) => (
+          <div key={song.id} className="album-card">
+            <br />
+            <img src={song.album.images[0].url} alt={song.name} />
+            <p>Track name: {song.name}</p>
+            <p>Artist: {song.artists[0].name}</p>
+          </div>
+        ))}
+      </div>
+      {/* // --------------------RETURN----------------------------// */}
+      <h3>Album list:</h3>
+
+{albums.map((album) => (
+  <Link to={`/albums/${album._id}`} key={album._id}>
+    <div className="album-card">
+      <img
+        src={album.albumImage}
+        alt={album.albumName}
+        width={300}
+        height={300}
+      />{" "}
+      {/* INLINE CODE TO NE REMOVED LATER */}
+      <h2>{album.albumName}</h2>
+    </div>
+  </Link>
+))}
+{/* // -----------------------------------------------------// */}
     </div>
   );
 }
