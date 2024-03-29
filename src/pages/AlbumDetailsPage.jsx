@@ -34,20 +34,20 @@ function AlbumDetailPage() {
     <>
       <Navbar />
       <div className="wrap-container">
-        <div className="wrap">
+        <div className="wrap pb-3">
           {album && (
             <div className="pt-5">
-              <h1>Album details</h1>
+              <h3>Album details</h3>
               <img
                 src={album.albumImage}
                 alt="album_img"
                 width={300}
                 height={300}
               />
-              <h1>{album.albumName}</h1>
+              <h4>{album.albumName}</h4>
               <p>{album.artistsNames}</p>
 
-              <h2>Album's Reviews</h2>
+              <h3>Album's Reviews</h3>
               <div className="card">
                 <AddReview reloadAlbum={getAlbum} albumId={albumId} />
                 <ul>
