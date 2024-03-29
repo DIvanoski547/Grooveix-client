@@ -1,9 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import albumsService from "../services/albums.service";
 import Navbar from "../components/Navbar";
+import AddReview from "../components/AddReview";
+import ReviewCard from "../components/ReviewCard";
+import { AuthContext } from "../context/auth.context";
 
 function AlbumDetailPage() {
+  const { isAdmin } = useContext(AuthContext);
   const [album, setAlbum] = useState(null);
   const { albumId } = useParams();
   // const [reviews, setReviews] = useState([]);
@@ -14,9 +18,6 @@ function AlbumDetailPage() {
       .then((response) => {
         const oneAlbum = response.data;
         setAlbum(oneAlbum);
-        if (oneAlbum && oneAlbum.reviews) {
-          // setReviews(oneAlbum.reviews);
-        }
       })
       .catch((error) => console.log(error));
   };
@@ -30,55 +31,43 @@ function AlbumDetailPage() {
       <Navbar />
       {album && (
         <>
-         <div className="wrap-container text-light">
-          <div className="wrap">
-<h1>Album details</h1>
-            <img
-            src={album.albumImage}
-            alt="album_img"
-            width={300}
-            height={300}
-          />
-          <h1>{album.albumName}</h1>
-          <p>{album.artistsNames}</p>
+          <div className="wrap-container text-light">
+            <div className="wrap">
+              <h1>Album details</h1>
+              <img
+                src={album.albumImage}
+                alt="album_img"
+                width={300}
+                height={300}
+              />
+              <h1>{album.albumName}</h1>
+              <p>{album.artistsNames}</p>
 
-          
-          <h2>Reviews</h2>
-              {/* 
-          {reviews.length > 0 ? (
-            <ul>
-              {reviews.map((review) => (
-                <li key={review._id}>
-                  <p>Username: {review.username}</p>
-                  <p>Rating: {review.rating}</p>
-                  <p>Content: {review.content}</p>
+              <h2>Album's Reviews</h2>
+              <AddReview reloadAlbum={getAlbum} albumId={albumId} />
+              <ul>
+                <li>
+                  {album &&
+                    album.reviews.map((review) => {
+                      <ReviewCard key={review._id} {...review} />;
+                    })}
                 </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No reviews available</p>
-          )}
-        </>
-      )}
-            */}
-      <Link to="/homepage">
-        <button>Back</button>
-      </Link>
-      <Link to={`/albums/edit/${albumId}`}>
-        <button className="btn-edit m-2">Edit</button>
-      </Link>
+              </ul>
+              <Link to="/homepage">
+                <button>Back</button>
+              </Link>
+
+              {isAdmin && (
+                <>
+                  <Link to={`/albums/edit/${albumId}`}>
+                    <button className="btn-edit m-2">Edit</button>
+                  </Link>
+                </>
+              )}
+            </div>
           </div>
-
-      
-         
-         
-         
-         </div>
-    
-
         </>
       )}
-     
     </>
   );
 }

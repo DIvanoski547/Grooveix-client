@@ -66,55 +66,49 @@ function AlbumEditPage() {
       <h1 className="text-light pt-2 m-0">Edit Album</h1>
       <div className="wrap-container text-light ">
         <div className="wrap">
+          <form onSubmit={handleSubmitForm}>
+            {/* <label htmlFor="albumImage">Album Image</label><br/> */}
+            <img src={albumImage} alt="album_img" width={250} height={250} />
+            <br />
+            <input
+              className="form-control my-2"
+              type="file"
+              name="albumImage"
+              onChange={(e) => handleFileUpload(e)}
+            />
 
-      <form onSubmit={handleSubmitForm}>
-        {/* <label htmlFor="albumImage">Album Image</label><br/> */}
-        <img src={albumImage} alt="album_img" width={250} height={250} /><br/>
-        <input
-            className="form-control my-2"
-          type="file"
-          name="albumImage"
-          onChange={(e) => handleFileUpload(e)}
-        />
-   
-        <label>Album name </label><br/>
-        <input
-            className="form-control my-2"
-          type="text"
-          name="albumName"
-          value={albumName}
-          onChange={(e) => setAlbumName(e.target.value)}
-        />
-        
-        <label className="">Artists names</label><br/>
-        <input
-            className="form-control my-2"
-          type="text"
-          name="artistsNames"
-          value={artistsNames}
-          onChange={(e) => setArtistsNames(e.target.value)}
-        />
-       <button type="submit" className="btn-magenta my-2">Update Album</button>
+            <label>Album name </label>
+            <br />
+            <input
+              className="form-control my-2"
+              type="text"
+              name="albumName"
+              value={albumName}
+              onChange={(e) => setAlbumName(e.target.value)}
+            />
 
-        
-      </form>
-      <button onClick={deleteAlbum} className="btn-delete mx-2">Delete Album</button>
- 
+            <label className="">Artists names</label>
+            <br />
+            <input
+              className="form-control my-2"
+              type="text"
+              name="artistsNames"
+              value={artistsNames}
+              onChange={(e) => setArtistsNames(e.target.value)}
+            />
+            <button type="submit" className="btn-magenta my-2">
+              Update Album
+            </button>
+          </form>
+          <button onClick={deleteAlbum} className="btn-delete mx-2">
+            Delete Album
+          </button>
 
-    
-        <Link to={`/albums/${albumId}`}>
-            <button className="btn-back my-2">
-          Back
-          
-             </button>
+          <Link to={`/albums/${albumId}`}>
+            <button className="btn-back my-2">Back</button>
           </Link>
-   
+        </div>
       </div>
-      </div>
-      
-      
-
-
     </>
   );
 }

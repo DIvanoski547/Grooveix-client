@@ -11,7 +11,8 @@ import ArtistDetailsPage from "./pages/ArtistDetailsPage";
 import ProfilePage from "./pages/auth/ProfilePage";
 import AllUsersPage from "./pages/AllUsersPage";
 import AlbumEditPage from "./pages/AlbumEditPage";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -23,12 +24,21 @@ function App() {
         <Route exact path="/homepage" element={<Homepage />} />
         <Route exact path="/albums" element={<AlbumsListPage />} />
         <Route exact path="/albums/:albumId" element={<AlbumDetailsPage />} />
-        <Route exact path="/albums/create-album" element={<AlbumCreatePage />} />
+        <Route
+          exact
+          path="/albums/create-album"
+          element={<AlbumCreatePage />}
+        />
         <Route exact path="/albums/edit/:albumId" element={<AlbumEditPage />} />
         <Route exact path="/profile" element={<ProfilePage />} />
-        <Route exact path="/artists/:artistId" element={<ArtistDetailsPage />} />
+        <Route
+          exact
+          path="/artists/:artistId"
+          element={<ArtistDetailsPage />}
+        />
         <Route exact path="/all-users" element={<AllUsersPage />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

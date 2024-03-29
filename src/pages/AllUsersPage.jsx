@@ -27,10 +27,8 @@ function AllUsersPage() {
         </div>
       ))}
       <button>
-          <Link to={"/profile"}>
-            Back
-          </Link>
-        </button>
+        <Link to={"/profile"}>Back</Link>
+      </button>
     </>
   );
 }

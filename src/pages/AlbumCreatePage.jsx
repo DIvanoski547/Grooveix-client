@@ -17,7 +17,7 @@ function AlbumCreatePage() {
     try {
       setIsUploadingAlbumImage(true);
       const response = await albumsService.uploadAlbumImage(uploadData);
-      console.log("response", response)
+      console.log("response", response);
       setAlbumImage(response.albumImage);
       setIsUploadingAlbumImage(false);
     } catch (err) {
@@ -41,47 +41,51 @@ function AlbumCreatePage() {
 
   return (
     <>
-          <div className="wrap-container text-light">
+      <div className="wrap-container text-light">
         <div className="wrap">
-      <h2>Create new album</h2>
+          <h2>Create new album</h2>
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="albumImage">Album image</label>
-        <input
-         className="form-control mb-2"
-          type="file"
-          name="albumImage"
-          onChange={(e) => handleFileUpload(e)}
-        />
-        
-        <label>Album name</label>
-        <input
-         className="form-control mb-2"
-          type="text"
-          name="albumName"
-          value={albumName}
-          onChange={(e) => setAlbumName(e.target.value)}
-        />
-   
-        <label>Artists names</label>
-        <input
-         className="form-control mb-2"
-          type="text"
-          name="artistsNames"
-          value={artistsNames}
-          onChange={(e) => setArtistsNames(e.target.value)}
-        />
-     
-        {!isUploadingAlbumImage ? <button type="submit" className="btn-add m-2">Add Album</button> : <button type="submit" disabled>Uploading album image...</button>}
-       <Link to="/albums">
-        <button className="btn-back m-2">Back</button>
-      </Link>
-     
-      </form>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="albumImage">Album image</label>
+            <input
+              className="form-control mb-2"
+              type="file"
+              name="albumImage"
+              onChange={(e) => handleFileUpload(e)}
+            />
 
-    
+            <label>Album name</label>
+            <input
+              className="form-control mb-2"
+              type="text"
+              name="albumName"
+              value={albumName}
+              onChange={(e) => setAlbumName(e.target.value)}
+            />
 
-      </div>
+            <label>Artists names</label>
+            <input
+              className="form-control mb-2"
+              type="text"
+              name="artistsNames"
+              value={artistsNames}
+              onChange={(e) => setArtistsNames(e.target.value)}
+            />
+
+            {!isUploadingAlbumImage ? (
+              <button type="submit" className="btn-add m-2">
+                Add Album
+              </button>
+            ) : (
+              <button type="submit" disabled>
+                Uploading album image...
+              </button>
+            )}
+            <Link to="/albums">
+              <button className="btn-back m-2">Back</button>
+            </Link>
+          </form>
+        </div>
       </div>
     </>
   );

@@ -42,69 +42,74 @@ const SignupPage = () => {
     <div className="bg-lila">
       <div className="wrap-container">
         <div className="wrap">
-   <form onSubmit={handleSubmit} className="signUpForm">
-        <div className="">
-          <h1 className="text-light"> <b> Create account</b></h1>
-         
-          <input
-           className="form-control my-3"
-            type="text"
-            name="firstName"
-            value={user.firstName}
-            onChange={handleChange}
-            placeholder="First Name"
-          />
-        
-          <input
-           className="form-control mb-3"
-            type="text"
-            name="lastName"
-            value={user.lastName}
-            onChange={handleChange}
-            placeholder="Last Name"
-          />
-       
-          <input
-           className="form-control mb-3"
-            type="text"
-            name="username"
-            value={user.username}
-            onChange={handleChange}
-            placeholder="Username"
-          />
-        
-          <input
-           className="form-control mb-3"
-            type="email"
-            name="email"
-            value={user.email}
-            onChange={handleChange}
-            placeholder="user@email.com"
-          />
-      
-          <input
-           className="form-control"
-            type="password"
-            name="password"
-            value={user.password}
-            onChange={handleChange}
-            placeholder="**********"
-          />
-        </div>
-        {errorMessage && <p className="error-message text-danger mt-3">{errorMessage}</p>}
+          <form onSubmit={handleSubmit} className="signUpForm">
+            <div className="">
+              <h1 className="text-light">
+                {" "}
+                <b> Create account</b>
+              </h1>
 
-        <button type="submit" className="btn-magenta m-3">Sign Up</button>
-        <br />
+              <input
+                className="form-control my-3"
+                type="text"
+                name="firstName"
+                value={user.firstName}
+                onChange={handleChange}
+                placeholder="First Name"
+              />
 
-        <Link to={"/"}>
-          {" "}
-          <button className="btn-magenta">Back</button>
-        </Link>
-      </form>
+              <input
+                className="form-control mb-3"
+                type="text"
+                name="lastName"
+                value={user.lastName}
+                onChange={handleChange}
+                placeholder="Last Name"
+              />
+
+              <input
+                className="form-control mb-3"
+                type="text"
+                name="username"
+                value={user.username}
+                onChange={handleChange}
+                placeholder="Username"
+              />
+
+              <input
+                className="form-control mb-3"
+                type="email"
+                name="email"
+                value={user.email}
+                onChange={handleChange}
+                placeholder="user@email.com"
+              />
+
+              <input
+                className="form-control"
+                type="password"
+                name="password"
+                value={user.password}
+                onChange={handleChange}
+                placeholder="**********"
+              />
+            </div>
+            {errorMessage && (
+              <p className="error-message text-danger mt-3">{errorMessage}</p>
+            )}
+
+            <button type="submit" className="btn-magenta m-3">
+              Sign Up
+            </button>
+            <br />
+
+            <Link to={"/"}>
+              {" "}
+              <button className="btn-magenta">Back</button>
+            </Link>
+          </form>
         </div>
       </div>
-    
-   
     </div>
   );
 };
