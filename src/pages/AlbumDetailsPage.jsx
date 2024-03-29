@@ -37,7 +37,7 @@ function AlbumDetailPage() {
         <>
          <div className="wrap-container text-light">
           <div className="wrap">
-<h1>Album details</h1>
+          <h1>Album details</h1>
             <img
             src={album.albumImage}
             alt="album_img"
@@ -48,8 +48,7 @@ function AlbumDetailPage() {
           <p>{album.artistsNames}</p>
 
           
-          <h2>Reviews</h2>
-{/* 
+          <h2>Reviews</h2> 
           {reviews.length > 0 ? (
             <ul>
               {reviews.map((review) => (
@@ -63,6 +62,8 @@ function AlbumDetailPage() {
           ) : (
             <p>No reviews available</p>
           )}
+          </div> 
+        </div>
         </>
       )}
       <Link to="/homepage">
@@ -71,17 +72,6 @@ function AlbumDetailPage() {
       <Link to={`/albums/edit/${albumId}`}>
         <button className="btn-edit m-2">Edit</button>
       </Link>
-          </div>
-
-      
-         
-         
-         
-         </div>
-    
-
-        </>
-      )}
       <Footer />
     </>
   );
