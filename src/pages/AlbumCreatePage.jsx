@@ -1,6 +1,7 @@
 import { useState } from "react";
 import albumsService from "../services/albums.service";
 import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
 
 function AlbumCreatePage() {
   const [albumImage, setAlbumImage] = useState("");
@@ -87,6 +88,7 @@ function AlbumCreatePage() {
           </form>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

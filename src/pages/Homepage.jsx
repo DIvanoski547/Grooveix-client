@@ -3,6 +3,7 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import albumsService from "../services/albums.service";
 import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
 
 const client_id = "c60f0049bfc041a5a26d2fb2e1cef823";
 const client_secret = "75daf3ab6adc4ff88c150744a952a965";
@@ -169,6 +170,7 @@ function Homepage() {
           </div>
         ))}
       </div> */}
+      <Footer />
     </div>
   );
 }

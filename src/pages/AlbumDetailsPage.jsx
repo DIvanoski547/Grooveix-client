@@ -1,16 +1,17 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import albumsService from "../services/albums.service";
 import Navbar from "../components/Navbar";
 import AddReview from "../components/AddReview";
 import ReviewCard from "../components/ReviewCard";
 import { AuthContext } from "../context/auth.context";
+import Footer from "../components/Footer";
 
 function AlbumDetailPage() {
   const { isAdmin } = useContext(AuthContext);
   const [album, setAlbum] = useState(null);
   const { albumId } = useParams();
-  // const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
   const getAlbum = () => {
     albumsService
@@ -18,21 +19,24 @@ function AlbumDetailPage() {
       .then((response) => {
         const oneAlbum = response.data;
         setAlbum(oneAlbum);
+        if (oneAlbum && oneAlbum.reviews) {
+          setReviews(oneAlbum.reviews);
+        }
       })
       .catch((error) => console.log(error));
   };
 
   useEffect(() => {
     getAlbum();
-  }, []);
+  }, [albumId]);
 
   return (
     <>
       <Navbar />
-      {album && (
-        <>
-          <div className="wrap-container text-light">
-            <div className="wrap">
+      <div className="wrap-container text-light">
+        <div className="wrap">
+          {album && (
+            <div>
               <h1>Album details</h1>
               <img
                 src={album.albumImage}
@@ -53,6 +57,7 @@ function AlbumDetailPage() {
                     ))}
                 </li>
               </ul>
+
               <Link to="/homepage">
                 <button>Back</button>
               </Link>
@@ -65,10 +70,12 @@ function AlbumDetailPage() {
                 </>
               )}
             </div>
-          </div>
-        </>
-      )}
+          )}
+          ;
+        </div>
+      </div>
     </>
   );
 }
+
 export default AlbumDetailPage;

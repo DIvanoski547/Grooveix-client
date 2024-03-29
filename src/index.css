@@ -68,8 +68,8 @@ button:focus-visible {
 }
 
 .img-wrap {
-  /* height: 250px;
-  width: 250px; */
+  height: 200px;
+  width: 350px;
   position: center;
 }
 
