@@ -7,10 +7,10 @@ export default function Footer() {
       className="text-center text-white"
       style={{ backgroundColor: "#21081a" }}
     >
-      <MDBContainer className="p-4"></MDBContainer>
+      {/* <MDBContainer></MDBContainer> */}
 
       <div
-        className="text-center p-3"
+        className="text-center py-3"
         style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
       >
         © 2024 Copyright:
@@ -18,7 +18,7 @@ export default function Footer() {
           Grooveix
         </a>
         <p>Powered by Spotify</p>
-        <p>Made with love by: Davi Ivanoski & Omayma El Hadari </p>
+        <p>Made with love by: David Ivanoski & Omayma El Hadari </p>
       </div>
     </MDBFooter>
   );

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import avatarPng from "../../assets/avatar.png";
 import userService from "../../services/users.service";
+import Footer from "../../components/Footer";
 
 function ProfilePage() {
   const { user, setUser, isAdmin } = useContext(AuthContext);
@@ -98,6 +99,7 @@ function ProfilePage() {
           </>
         )}
       </div>
+      <Footer />
     </div>
   );
 }

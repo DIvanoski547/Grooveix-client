@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import AddReview from "../components/AddReview";
 import ReviewCard from "../components/ReviewCard";
 import { AuthContext } from "../context/auth.context";
+import Footer from "../components/Footer";
 
 function AlbumDetailPage() {
   const { isAdmin } = useContext(AuthContext);
@@ -65,9 +66,11 @@ function AlbumDetailPage() {
                 </>
               )}
             </div>
+            
           </div>
         </>
       )}
+      <Footer />
     </>
   );
 }

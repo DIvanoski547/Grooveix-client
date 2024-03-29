@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+import Footer from "../components/Footer";
 
 const client_id = "c60f0049bfc041a5a26d2fb2e1cef823";
 const client_secret = "75daf3ab6adc4ff88c150744a952a965";
@@ -83,6 +84,7 @@ const ArtistInfo = () => {
         {" "}
         <button className="btn-magenta">Back</button>
       </Link>
+      <Footer />
     </div>
   );
 };

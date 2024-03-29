@@ -12,7 +12,7 @@ import ProfilePage from "./pages/auth/ProfilePage";
 import AllUsersPage from "./pages/AllUsersPage";
 import AlbumEditPage from "./pages/AlbumEditPage";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -38,7 +38,7 @@ function App() {
         />
         <Route exact path="/all-users" element={<AllUsersPage />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
