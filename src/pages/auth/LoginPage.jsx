@@ -41,7 +41,7 @@ const LoginPage = () => {
       <div className="wrap-container">
         <div className="wrap">
           <form onSubmit={handleSubmit} className="loginForm">
-            <div className="text-light">
+            <div>
               <h1><b> Login</b> </h1>
               <div className="my-3">
    

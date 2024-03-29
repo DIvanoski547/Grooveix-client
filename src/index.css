@@ -28,7 +28,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: rgba(48, 41, 85, 255) !important;
+  background-color: #ece7e5 !important;
 }
 
 h1 {
@@ -48,7 +48,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: black;
 }
 button:focus,
 button:focus-visible {
@@ -58,21 +58,23 @@ button:focus-visible {
 /*-------------------------- STARTER PAGE CUSTOM CSS --------------------------------*/
 
 .btn-magenta {
-  background-color: #ce93d8;
+  background-color: black;
   outline: none;
   cursor: pointer;
   border-radius: 15px;
   /* padding: 10px 100px; */
   width: 250px;
+  color: #ece7e5;
 }
 
 .img-wrap {
-  height: 250px;
-  width: 250px;
+  /* height: 250px;
+  width: 250px; */
+  position: center;
 }
 
 .bg-lila {
-  background-color: rgba(48, 41, 85, 255);
+  background-color: #ece7e5;
   height: 100vh;
   width: 100vw;
 }
@@ -92,8 +94,10 @@ button:focus-visible {
 /* NAVBAR CSS */
 
 .nav-opacity {
-  background-color: #ce93d8; /*whichever you want*/
-  opacity: 0.7;
+  background-color: #ece7e5; /*whichever you want*/
+  /* border-bottom: #213547 solid 1px; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 .btn-nav {
@@ -110,7 +114,7 @@ button:focus-visible {
 }
 
 .btn-nav:hover {
-  color: white;
+  color: orange;
 }
 
 nav a {
@@ -118,8 +122,8 @@ nav a {
 }
 
 .nav-logo {
-  width: 70px;
-  height: 70px;
+  width: 90px;
+  height: 50px;
 }
 
 .btn-delete{
@@ -139,7 +143,6 @@ nav a {
   border-radius: 15px;
   width: 200px;
   /* padding: 10px 100px; */
- 
 }
 
 .btn-add{
@@ -149,6 +152,8 @@ nav a {
   border-radius: 15px;
   width: 200px;
 }
+
+
 
 
 .btn-edit{

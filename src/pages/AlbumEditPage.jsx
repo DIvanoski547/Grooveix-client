@@ -1,6 +1,7 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import albumsService from "../services/albums.service";
+import Navbar from "../components/Navbar";
 
 function AlbumEditPage() {
   const [albumImage, setAlbumImage] = useState("");
@@ -63,8 +64,9 @@ function AlbumEditPage() {
 
   return (
     <>
-      <h1 className="text-light pt-2 m-0">Edit Album</h1>
-      <div className="wrap-container text-light ">
+    <Navbar />
+      <h1 className=" pt-2 m-0">Edit Album</h1>
+      <div className="wrap-container ">
         <div className="wrap">
 
       <form onSubmit={handleSubmitForm}>
@@ -94,7 +96,7 @@ function AlbumEditPage() {
           value={artistsNames}
           onChange={(e) => setArtistsNames(e.target.value)}
         />
-       <button type="submit" className="btn-magenta my-2">Update Album</button>
+       <button type="submit" className="btn-add my-2">Update Album</button>
 
         
       </form>

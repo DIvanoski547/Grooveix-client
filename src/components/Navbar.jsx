@@ -7,11 +7,11 @@ function Navbar() {
   const { user, isLoggedIn, logOutUser } = useContext(AuthContext);
   return (
 
-    <div className="py-3 nav-opacity">
+    <div className="py-1 nav-opacity">
 
     <nav>
 
-<img src="./src/assets/logo-img.jpg" alt="" className="nav-logo"/>
+<img src="./src/assets/logo-img.PNG" alt="" className="nav-logo me-5"/>
 
       <Link to="/homepage">
         <button className="btn-nav">Home</button>

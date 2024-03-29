@@ -41,7 +41,7 @@ function AlbumCreatePage() {
 
   return (
     <>
-          <div className="wrap-container text-light">
+          <div className="wrap-container">
         <div className="wrap">
       <h2>Create new album</h2>
 

@@ -13,7 +13,7 @@ function StarterPage() {
     <Container className="wrap">
       <Row>
         <Col>
-          <Image src="./src/assets/logo-img.jpg" alt="" className="img-wrap" rounded />
+          <Image src="./src/assets/logo.PNG" alt="" className="img-wrap" rounded />
         </Col>
       </Row>
 

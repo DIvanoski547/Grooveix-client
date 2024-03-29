@@ -11,7 +11,7 @@ function Homepage() {
   const [token, setToken] = useState("");
   const [albums, setAlbums] = useState([]);
   const [popularArtists, setPopularArtists] = useState([]);
-  const [recommendedSongs, setRecommendedSongs] = useState([]);
+  // const [recommendedSongs, setRecommendedSongs] = useState([]);
   const accessToken = token;
 
   // USE EFFECT TO ACCESS TOKEN FROM SPOTIFY API
@@ -74,41 +74,41 @@ function Homepage() {
   }, [accessToken]);
 
   // USE EFFECT TO RETRIVE RECOMMENDED POP TRACKS FROM SPOTIFY API
-  useEffect(() => {
-    const fetchRecommendedSongs = async () => {
-      try {
-        const response = await axios.get(
-          "https://api.spotify.com/v1/recommendations",
-          {
-            params: {
-              popularity: ">80",
-              limit: 10,
-              // market: "ES",
-              // seed_artists: "4NHQUGzhtTLFvgF5SZesLK",
-              seed_genres: "pop",
-              // seed_tracks: "0c6xIDDpzE81m2q797ordA",
-            },
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        );
+  // useEffect(() => {
+  //   const fetchRecommendedSongs = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "https://api.spotify.com/v1/recommendations",
+  //         {
+  //           params: {
+  //             popularity: ">80",
+  //             limit: 10,
+  //             // market: "ES",
+  //             // seed_artists: "4NHQUGzhtTLFvgF5SZesLK",
+  //             seed_genres: "pop",
+  //             // seed_tracks: "0c6xIDDpzE81m2q797ordA",
+  //           },
+  //           headers: {
+  //             Authorization: `Bearer ${accessToken}`,
+  //           },
+  //         }
+  //       );
 
-        if (response.status === 200) {
-          setRecommendedSongs(response.data.tracks);
-        } else {
-          console.error(
-            "Failed to fetch recommended songs:",
-            response.statusText
-          );
-        }
-      } catch (error) {
-        console.error("Error fetching recommended songs:", error);
-      }
-    };
+  //       if (response.status === 200) {
+  //         setRecommendedSongs(response.data.tracks);
+  //       } else {
+  //         console.error(
+  //           "Failed to fetch recommended songs:",
+  //           response.statusText
+  //         );
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching recommended songs:", error);
+  //     }
+  //   };
 
-    fetchRecommendedSongs();
-  }, [accessToken]);
+  //   fetchRecommendedSongs();
+  // }, [accessToken]);
 
   // LOGIC TO SHOW ALBUMS ON THE HOME PAGE
   const getAllAlbums = () => {
@@ -157,7 +157,7 @@ function Homepage() {
       </div>
 
       {/* SHOW RECOMENDED TRACKS ON THE HOME PAGE */}
-      <div>
+      {/* <div>
         {" "}
         <h2>Recomended Tracks: </h2>
         {recommendedSongs.map((song) => (
@@ -168,7 +168,7 @@ function Homepage() {
             <p>Artist: {song.artists[0].name}</p>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }

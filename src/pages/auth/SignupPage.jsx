@@ -44,7 +44,7 @@ const SignupPage = () => {
         <div className="wrap">
    <form onSubmit={handleSubmit} className="signUpForm">
         <div className="">
-          <h1 className="text-light"> <b> Create account</b></h1>
+          <h1> <b> Create account</b></h1>
          
           <input
            className="form-control my-3"
