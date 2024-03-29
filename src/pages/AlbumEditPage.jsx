@@ -111,8 +111,9 @@ function AlbumEditPage() {
             <button className="btn-back my-2">Back</button>
           </Link>
         </div>
-        <Footer />
+        
       </div>
+      <Footer />
     </>
   );
 }

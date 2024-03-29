@@ -14,7 +14,7 @@ function StarterPage() {
           <Row>
             <Col>
               <Image
-                src="./src/assets/logo.PNG"
+                src="../src/assets/logo.png"
                 alt=""
                 className="img-wrap"
                 rounded

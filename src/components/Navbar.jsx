@@ -10,7 +10,7 @@ function Navbar() {
 
     <nav>
 
-<img src="./src/assets/logo-img.PNG" alt="" className="nav-logo me-5"/>
+<img src="../src/assets/logo-img.png" alt="" className="nav-logo me-5"/>
 
         <Link to="/homepage">
           <button className="btn-nav">Home</button>

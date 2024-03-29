@@ -2,6 +2,7 @@ import { useState } from "react";
 import albumsService from "../services/albums.service";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 function AlbumCreatePage() {
   const [albumImage, setAlbumImage] = useState("");
@@ -42,6 +43,7 @@ function AlbumCreatePage() {
 
   return (
     <>
+    <Navbar />
           <div className="wrap-container">
         <div className="wrap">
           <h2>Create new album</h2>
