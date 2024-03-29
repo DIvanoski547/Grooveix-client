@@ -1,9 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import albumsService from "../services/albums.service";
 import Navbar from "../components/Navbar";
+import AddReview from "../components/AddReview";
+import ReviewCard from "../components/ReviewCard";
+import { AuthContext } from "../context/auth.context";
+import Footer from "../components/Footer";
 
 function AlbumDetailPage() {
+  const { isAdmin } = useContext(AuthContext);
   const [album, setAlbum] = useState(null);
   const { albumId } = useParams();
   const [reviews, setReviews] = useState([]);
@@ -41,8 +46,10 @@ function AlbumDetailPage() {
           />
           <h1>{album.albumName}</h1>
           <p>{album.artistsNames}</p>
-          <h2>Reviews</h2>
 
+          
+          <h2>Reviews</h2>
+{/* 
           {reviews.length > 0 ? (
             <ul>
               {reviews.map((review) => (
@@ -56,9 +63,10 @@ function AlbumDetailPage() {
           ) : (
             <p>No reviews available</p>
           )}
-          
-           <Link to="/homepage">
-        <button className="btn-back m-2">Back</button>
+        </>
+      )}
+      <Link to="/homepage">
+        <button>Back</button>
       </Link>
       <Link to={`/albums/edit/${albumId}`}>
         <button className="btn-edit m-2">Edit</button>
@@ -74,7 +82,7 @@ function AlbumDetailPage() {
 
         </>
       )}
-     
+      <Footer />
     </>
   );
 }

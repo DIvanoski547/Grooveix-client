@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import avatarPng from "../../assets/avatar.png";
 import userService from "../../services/users.service";
+import Footer from "../../components/Footer";
 
 function ProfilePage() {
   const { user, setUser, isAdmin } = useContext(AuthContext);
@@ -85,7 +86,7 @@ function ProfilePage() {
         )}
       </div>
       <div>
-        {isAdmin ? (
+        {isAdmin && (
           <>
             <Link to="/all-users">
               {" "}
@@ -96,12 +97,9 @@ function ProfilePage() {
               <button className="btn-magenta m-3"> View all albums</button>
             </Link>
           </>
-        ) : (
-          <>
-            <h1>not admin</h1>
-          </>
         )}
       </div>
+      <Footer />
     </div>
   );
 }

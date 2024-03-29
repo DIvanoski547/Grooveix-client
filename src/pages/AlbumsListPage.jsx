@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import albumsService from "../services/albums.service";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function AlbumsListPage() {
   const [albums, setAlbums] = useState([]);
@@ -42,6 +43,7 @@ function AlbumsListPage() {
       <Link to="/profile">
         <button className="btn-magenta m-3">Back </button>
       </Link>
+      <Footer />
     </>
   );
 }

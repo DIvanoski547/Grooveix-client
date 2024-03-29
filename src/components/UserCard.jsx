@@ -5,7 +5,6 @@ function UserCard({ profileImage, firstName, lastName, username }) {
       <h4>{username}</h4>
       <p>{firstName}</p>
       <p>{lastName}</p>
-      
     </div>
   );
 }
