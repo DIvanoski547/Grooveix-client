@@ -48,9 +48,9 @@ function AlbumDetailPage() {
               <ul>
                 <li>
                   {album &&
-                    album.reviews.map((review) => {
-                      <ReviewCard key={review._id} {...review} />;
-                    })}
+                    album.reviews.map((review) => (
+                      <ReviewCard key={review._id} {...review} />
+                    ))}
                 </li>
               </ul>
               <Link to="/homepage">
