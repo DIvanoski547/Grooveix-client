@@ -34,7 +34,7 @@ function AlbumDetailPage() {
     <>
       <Navbar />
       <div className="wrap-container">
-        <div className="wrap pb-3">
+        <div className="wrap">
           {album && (
             <div className="pt-5">
               <h3>Album details</h3>
