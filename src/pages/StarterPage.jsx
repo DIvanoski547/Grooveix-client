@@ -16,7 +16,7 @@ function StarterPage() {
               <Image
                 src="../src/assets/logo.png"
                 alt=""
-                className="img-wrap"
+                className="img-wrap mb-3"
                 rounded
               />
             </Col>
