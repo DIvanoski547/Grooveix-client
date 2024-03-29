@@ -48,7 +48,7 @@ function AlbumDetailPage() {
               <p>{album.artistsNames}</p>
 
               <h3>Album's Reviews</h3>
-              <div className="card">
+              <div>
                 <AddReview reloadAlbum={getAlbum} albumId={albumId} />
                 <ul>
                   <li>
