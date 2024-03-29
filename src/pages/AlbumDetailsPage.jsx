@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import albumsService from "../services/albums.service";
 import Navbar from "../components/Navbar";
@@ -33,57 +33,48 @@ function AlbumDetailPage() {
   return (
     <>
       <Navbar />
-      {album && (
-        <>
-         <div className="wrap-container text-light">
-          <div className="wrap">
-<h1>Album details</h1>
-            <img
-            src={album.albumImage}
-            alt="album_img"
-            width={300}
-            height={300}
-          />
-          <h1>{album.albumName}</h1>
-          <p>{album.artistsNames}</p>
-
-          
-          <h2>Reviews</h2>
-{/* 
-          {reviews.length > 0 ? (
-            <ul>
-              {reviews.map((review) => (
-                <li key={review._id}>
-                  <p>Username: {review.username}</p>
-                  <p>Rating: {review.rating}</p>
-                  <p>Content: {review.content}</p>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No reviews available</p>
+      <div className="wrap-container text-light">
+        <div className="wrap">
+          {album && (
+            <>
+              <h1>Album details</h1>
+              <img
+                src={album.albumImage}
+                alt="album_img"
+                width={300}
+                height={300}
+              />
+              <h1>{album.albumName}</h1>
+              <p>{album.artistsNames}</p>
+              <h2>Reviews</h2>
+              {reviews.length > 0 ? (
+                <ul>
+                  {reviews.map((review) => (
+                    <li key={review._id}>
+                      <p>Username: {review.username}</p>
+                      <p>Rating: {review.rating}</p>
+                      <p>Content: {review.content}</p>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p>No reviews available</p>
+              )}
+            </>
           )}
-        </>
-      )}
-      <Link to="/homepage">
-        <button>Back</button>
-      </Link>
-      <Link to={`/albums/edit/${albumId}`}>
-        <button className="btn-edit m-2">Edit</button>
-      </Link>
-          </div>
-
-      
-         
-         
-         
-         </div>
-    
-
-        </>
-      )}
+          <Link to="/homepage">
+            <button>Back</button>
+          </Link>
+          {isAdmin && (
+            <Link to={`/albums/edit/${albumId}`}>
+              <button className="btn-edit m-2">Edit</button>
+            </Link>
+          )}
+        </div>
+      </div>
       <Footer />
     </>
   );
 }
+
 export default AlbumDetailPage;
