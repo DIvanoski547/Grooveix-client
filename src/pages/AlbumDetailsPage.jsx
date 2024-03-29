@@ -33,7 +33,7 @@ function AlbumDetailPage() {
   return (
     <>
       <Navbar />
-      <div className="wrap-container text-light">
+      <div className="wrap-container">
         <div className="wrap">
           {album && (
             <div>
@@ -59,7 +59,7 @@ function AlbumDetailPage() {
               </ul>
 
               <Link to="/homepage">
-                <button>Back</button>
+                <button className="btn-back m-2">Back</button>
               </Link>
 
               {isAdmin && (

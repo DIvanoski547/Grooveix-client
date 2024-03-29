@@ -33,6 +33,7 @@ function AddReview({ albumId, reloadAlbum }) {
           name="rating"
           value={rating}
           onChange={(e) => setRating(e.target.value)}
+          className="form-control border-dark-subtle mb-2"
         />
         <label>Comment:</label>
         <textarea
@@ -40,9 +41,11 @@ function AddReview({ albumId, reloadAlbum }) {
           name="content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
+          className="form-control border-dark-subtle mb-2 "
+          rows="3"
         />
 
-        <button type="submit">Submit</button>
+        <button type="submit" className="btn-add">Submit</button>
       </form>
     </div>
   );

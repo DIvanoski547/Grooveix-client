@@ -29,6 +29,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: #ece7e5 !important;
+  
 }
 
 h1 {
@@ -163,6 +164,65 @@ nav a {
   border-radius: 15px;
   width: 200px;
 }
+
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.album-card {
+  width: fit-content;
+  /* padding: 10px; */
+  /* border: black solid 1px; */
+  /* box-shadow: 0px 2px 3px grey; */
+  margin: 0 auto;
+  margin-bottom: 20px;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.profile-card {
+  width: 400px;
+  /* padding: 10px; */
+  outline: black 10px;
+  /* box-shadow: 0px 2px 3px grey; */
+  margin: 0 auto;
+  margin-bottom: 20px;
+  /* background: white; */
+  border-radius: 4px;
+}
+
+.album-card img {
+  width: 350px;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+}
+
+.profile-card img {
+  width: 350px;
+}
+
+.card-wrapper a {
+  text-decoration: none;
+  color: black;
+}
+
+.footer {
+  text-align: center;
+  bottom: 0;
+  padding: 20px 0;
+  margin-top: auto;
+  background-color: mediumslateblue;
+  width: 100%;
+}
+
+
+
 
 
 

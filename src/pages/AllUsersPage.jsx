@@ -27,9 +27,9 @@ function AllUsersPage() {
           <UserCard key={user._id} {...user} />
         </div>
       ))}
-      <button>
-        <Link to={"/profile"}>Back</Link>
-      </button>
+      
+        <Link to={"/profile"}><button className="btn-back mb-3">Back</button></Link>
+      
       <Footer />
     </>
   );

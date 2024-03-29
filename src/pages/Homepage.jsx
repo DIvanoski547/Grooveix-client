@@ -130,7 +130,7 @@ function Homepage() {
 
       {/* SHOW ALBUMS ON THE HOME PAGE */}
       <div>
-        <h3>Album list:</h3>
+        <h2>Album list</h2>
         {albums.map((album) => (
           <div className="card-wrapper" key={album._id}>
             <Link to={`/albums/${album._id}`}>
@@ -145,15 +145,17 @@ function Homepage() {
 
       {/* SHOW TOP ARTISTS ON THE HOME PAGE */}
       <div>
-        <h2>Top Artists: </h2>
+        <h2>Top Artists</h2>
         {popularArtists.map((oneArtist) => (
-          <Link to={`/artists/${oneArtist.id}`} key={oneArtist.id}>
-            <div className="album-card">
+          <div className="album-card" key={oneArtist.id}>
+            <Link to={`/artists/${oneArtist.id}`}>
               <img src={oneArtist.images[0].url} alt={oneArtist.name} />
-              <p>{oneArtist.name}</p>
-              <p>Popularity rating: {oneArtist.popularity}</p>
-            </div>
-          </Link>
+            </Link>
+            <p><b>{oneArtist.name}</b></p>
+            <p>⭐ {oneArtist.popularity}</p>
+            <p>♫ {oneArtist.genres}</p>
+            <p>🤵{oneArtist.followers.total}</p>
+          </div>
         ))}
       </div>
 

@@ -51,7 +51,7 @@ function AlbumCreatePage() {
           <form onSubmit={handleSubmit}>
             <label htmlFor="albumImage">Album image</label>
             <input
-              className="form-control mb-2"
+              className="form-control border-dark-subtle mb-2"
               type="file"
               name="albumImage"
               onChange={(e) => handleFileUpload(e)}
@@ -59,7 +59,7 @@ function AlbumCreatePage() {
 
             <label>Album name</label>
             <input
-              className="form-control mb-2"
+              className="form-control border-dark-subtle mb-2"
               type="text"
               name="albumName"
               value={albumName}
@@ -68,7 +68,7 @@ function AlbumCreatePage() {
 
             <label>Artists names</label>
             <input
-              className="form-control mb-2"
+              className="form-control border-dark-subtle mb-2"
               type="text"
               name="artistsNames"
               value={artistsNames}

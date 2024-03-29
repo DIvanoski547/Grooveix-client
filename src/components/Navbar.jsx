@@ -5,12 +5,15 @@ import { AuthContext } from "../context/auth.context";
 function Navbar() {
   const { user, isLoggedIn, logOutUser } = useContext(AuthContext);
   return (
-
     <div className="py-1 nav-opacity">
-
-    <nav>
-
-<img src="../src/assets/logo-img.jpg" alt="logo-img" className="nav-logo me-5"/>
+      <nav>
+        <Link to={"/homepage"}>
+          <img
+            src="./logo-img.jpg"
+            alt="logo-img"
+            className="nav-logo me-5"
+          />
+        </Link>
 
         <Link to="/homepage">
           <button className="btn-nav">Home</button>

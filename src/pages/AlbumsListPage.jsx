@@ -21,7 +21,7 @@ function AlbumsListPage() {
   return (
     <>
       <Navbar />
-      <h3>Album list:</h3>
+      <h3 className="mt-3">Album list</h3>
 
       {albums.map((album) => (
         <div className="card-wrapper" key={album._id}>
@@ -35,13 +35,13 @@ function AlbumsListPage() {
       ))}
 
       <Link to="/albums/create-album">
-        <button className="btn-magenta m-3">Create New Album</button>
+        <button className="btn-add mt-3">Create New Album</button>
       </Link>
 
       <br />
 
       <Link to="/profile">
-        <button className="btn-magenta m-3">Back </button>
+        <button className="btn-back m-3">Back </button>
       </Link>
       <Footer />
     </>

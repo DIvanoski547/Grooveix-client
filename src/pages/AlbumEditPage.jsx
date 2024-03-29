@@ -1,8 +1,8 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import albumsService from "../services/albums.service";
-import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 function AlbumEditPage() {
   const [albumImage, setAlbumImage] = useState("");
@@ -66,15 +66,16 @@ function AlbumEditPage() {
   return (
     <>
       <Navbar />
-      <h1 className=" pt-2 m-0">Edit Album</h1>
       <div className="wrap-container ">
+      
         <div className="wrap">
+        <h1 className=" p-4">Edit Album</h1>
           <form onSubmit={handleSubmitForm}>
             {/* <label htmlFor="albumImage">Album Image</label><br/> */}
             <img src={albumImage} alt="album_img" width={250} height={250} />
             <br />
             <input
-              className="form-control my-2"
+              className="form-control border-dark-subtle my-2"
               type="file"
               name="albumImage"
               onChange={(e) => handleFileUpload(e)}
@@ -83,7 +84,7 @@ function AlbumEditPage() {
             <label>Album name </label>
             <br />
             <input
-              className="form-control my-2"
+              className="form-control border-dark-subtle my-2"
               type="text"
               name="albumName"
               value={albumName}
@@ -93,7 +94,7 @@ function AlbumEditPage() {
             <label className="">Artists names</label>
             <br />
             <input
-              className="form-control my-2"
+              className="form-control border-dark-subtle my-2"
               type="text"
               name="artistsNames"
               value={artistsNames}

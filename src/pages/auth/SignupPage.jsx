@@ -47,7 +47,7 @@ const SignupPage = () => {
           <h1> <b> Create account</b></h1>
          
           <input
-           className="form-control my-3"
+           className="form-control border-dark-subtle mb-3"
             type="text"
             name="firstName"
             value={user.firstName}
@@ -56,7 +56,7 @@ const SignupPage = () => {
           />
         
           <input
-           className="form-control mb-3"
+           className="form-control border-dark-subtle mb-3"
             type="text"
             name="lastName"
             value={user.lastName}
@@ -65,7 +65,7 @@ const SignupPage = () => {
           />
        
           <input
-           className="form-control mb-3"
+           className="form-control border-dark-subtle mb-3"
             type="text"
             name="username"
             value={user.username}
@@ -74,7 +74,7 @@ const SignupPage = () => {
           />
         
           <input
-           className="form-control mb-3"
+           className="form-control border-dark-subtle mb-3"
             type="email"
             name="email"
             value={user.email}
@@ -83,7 +83,7 @@ const SignupPage = () => {
           />
       
           <input
-           className="form-control"
+           className="form-control border-dark-subtle mb-3"
             type="password"
             name="password"
             value={user.password}

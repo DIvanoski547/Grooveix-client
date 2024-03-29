@@ -45,7 +45,7 @@ const LoginPage = () => {
               <h1><b> Login</b> </h1>
               <div className="my-3">
                 <input
-                  className="form-control"
+                  className="form-control border-dark-subtle mb-2"
                   type="email"
                   name="email"
                   value={user.email}
@@ -56,7 +56,7 @@ const LoginPage = () => {
 
               <div>
                 <input
-                  className="form-control"
+                  className="form-control  border-dark-subtle mb-2"
                   type="password"
                   name="password"
                   value={user.password}

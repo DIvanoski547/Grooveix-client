@@ -54,7 +54,7 @@ function ProfilePage() {
   return (
     <div>
       <Navbar />
-      <div className="profile-card mt-3">
+      <div className="album-card mt-3">
         <img src={user.profileImage} alt="profile_img" />
         <p>{user.username}</p>
         <p>{user.firstName}</p>

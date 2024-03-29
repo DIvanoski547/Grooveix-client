@@ -10,8 +10,8 @@ export default function Footer() {
       {/* <MDBContainer></MDBContainer> */}
 
       <div
-        className="text-center py-3"
-        style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
+        className="footer"
+        // style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
       >
         © 2024 Copyright:
         <a className="text-white" href="https://grooveix.netlify.app">
