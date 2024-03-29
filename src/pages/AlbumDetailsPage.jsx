@@ -33,19 +33,6 @@ function AlbumDetailPage() {
   return (
     <>
       <Navbar />
-      {album && (
-        <>
-         <div className="wrap-container text-light">
-          <div className="wrap">
-          <h1>Album details</h1>
-            <img
-            src={album.albumImage}
-            alt="album_img"
-            width={300}
-            height={300}
-          />
-          <h1>{album.albumName}</h1>
-          <p>{album.artistsNames}</p>
       <div className="wrap-container text-light">
         <div className="wrap">
           {album && (
