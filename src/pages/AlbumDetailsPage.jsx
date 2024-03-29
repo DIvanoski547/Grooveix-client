@@ -36,7 +36,7 @@ function AlbumDetailPage() {
       <div className="wrap-container">
         <div className="wrap">
           {album && (
-            <div>
+            <div className="pt-5">
               <h1>Album details</h1>
               <img
                 src={album.albumImage}
@@ -48,15 +48,17 @@ function AlbumDetailPage() {
               <p>{album.artistsNames}</p>
 
               <h2>Album's Reviews</h2>
-              <AddReview reloadAlbum={getAlbum} albumId={albumId} />
-              <ul>
-                <li>
-                  {album &&
-                    album.reviews.map((review) => (
-                      <ReviewCard key={review._id} {...review} />
-                    ))}
-                </li>
-              </ul>
+              <div className="card">
+                <AddReview reloadAlbum={getAlbum} albumId={albumId} />
+                <ul>
+                  <li>
+                    {album &&
+                      album.reviews.map((review) => (
+                        <ReviewCard key={review._id} {...review} />
+                      ))}
+                  </li>
+                </ul>
+              </div>
 
               <Link to="/homepage">
                 <button className="btn-back m-2">Back</button>
@@ -71,7 +73,6 @@ function AlbumDetailPage() {
               )}
             </div>
           )}
-          ;
         </div>
       </div>
     </>

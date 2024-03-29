@@ -72,7 +72,7 @@ function AlbumEditPage() {
         <h1 className=" p-4">Edit Album</h1>
           <form onSubmit={handleSubmitForm}>
             {/* <label htmlFor="albumImage">Album Image</label><br/> */}
-            <img src={albumImage} alt="album_img" width={250} height={250} />
+            <img src={albumImage} alt="album_img" width={300} height={300} />
             <br />
             <input
               className="form-control border-dark-subtle my-2"
