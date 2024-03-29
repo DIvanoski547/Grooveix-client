@@ -131,7 +131,7 @@ function Homepage() {
       <div>
         <h3>Album list:</h3>
         {albums.map((album) => (
-          <div className="card-wrapper"  key={album._id}>
+          <div className="card-wrapper" key={album._id}>
             <Link to={`/albums/${album._id}`}>
               <div className="album-card">
                 <img src={album.albumImage} alt={album.albumName} />

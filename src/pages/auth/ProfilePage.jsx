@@ -85,7 +85,7 @@ function ProfilePage() {
         )}
       </div>
       <div>
-        {isAdmin ? (
+        {isAdmin && (
           <>
             <Link to="/all-users">
               {" "}
@@ -95,10 +95,6 @@ function ProfilePage() {
               {" "}
               <button className="btn-magenta m-3"> View all albums</button>
             </Link>
-          </>
-        ) : (
-          <>
-            <h1>not admin</h1>
           </>
         )}
       </div>

@@ -44,33 +44,30 @@ const LoginPage = () => {
             <div>
               <h1><b> Login</b> </h1>
               <div className="my-3">
-   
-                  <input
-                   className="form-control"
-                    type="email"
-                    name="email"
-                    value={user.email}
-                    onChange={handleChange}
-
-                    placeholder="user@email.com"
-                  />
-               
+                <input
+                  className="form-control"
+                  type="email"
+                  name="email"
+                  value={user.email}
+                  onChange={handleChange}
+                  placeholder="user@email.com"
+                />
               </div>
 
               <div>
-          
-                  <input
+                <input
                   className="form-control"
-                    type="password"
-                    name="password"
-                    value={user.password}
-                    onChange={handleChange}
-                    placeholder="***********"
-                  />
-               
+                  type="password"
+                  name="password"
+                  value={user.password}
+                  onChange={handleChange}
+                  placeholder="***********"
+                />
               </div>
             </div>
-            {errorMessage && <p className="error-message text-danger mt-3">{errorMessage}</p>}
+            {errorMessage && (
+              <p className="error-message text-danger mt-3">{errorMessage}</p>
+            )}
             <button type="submit" className="btn-magenta m-3">
               Login
             </button>

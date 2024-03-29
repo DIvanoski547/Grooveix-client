@@ -110,13 +110,8 @@ function AlbumEditPage() {
           
              </button>
           </Link>
-   
+        </div>
       </div>
-      </div>
-      
-      
-
-
     </>
   );
 }

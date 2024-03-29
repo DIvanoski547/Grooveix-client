@@ -93,18 +93,18 @@ const SignupPage = () => {
         </div>
         {errorMessage && <p className="error-message text-danger mt-3">{errorMessage}</p>}
 
-        <button type="submit" className="btn-magenta m-3">Sign Up</button>
-        <br />
+            <button type="submit" className="btn-magenta m-3">
+              Sign Up
+            </button>
+            <br />
 
-        <Link to={"/"}>
-          {" "}
-          <button className="btn-magenta">Back</button>
-        </Link>
-      </form>
+            <Link to={"/"}>
+              {" "}
+              <button className="btn-magenta">Back</button>
+            </Link>
+          </form>
         </div>
       </div>
-    
-   
     </div>
   );
 };

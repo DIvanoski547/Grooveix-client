@@ -23,22 +23,22 @@ class ReviewsService {
 
   // GET /reviews/:reviewId -  Retrieves a specific review by id
   getReview = (id) => {
-    return this.api.get(`/api/reviews/${id}`);
+    return this.api.get(`/reviews/${id}`);
   };
 
   // POST /reviews -  Posts a review on a specific album by id
-  createReview = (requestBody) => {
-    return this.api.post("/api/reviews", requestBody);
+  addReview = (requestBody) => {
+    return this.api.post("/reviews", requestBody);
   };
 
   // PUT  /reviews/:reviewId -  Updates a specific review by id
   updateReview = (id, requestBody) => {
-    return this.api.put(`/api/reviews/${id}`, requestBody);
+    return this.api.put(`/reviews/${id}`, requestBody);
   };
 
   // DELETE /reviews /:reviewId - Deletes a specific review by id
   deleteReview = (id) => {
-    return this.api.delete(`/api/reviews/${id}`);
+    return this.api.delete(`/reviews/${id}`);
   };
 
 }
