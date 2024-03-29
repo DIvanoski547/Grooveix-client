@@ -17,7 +17,6 @@ function AddReview({ albumId, reloadAlbum }) {
         // Reset the state to clear the inputs
         setRating("");
         setContent("");
-
         reloadAlbum();
       })
       .catch((error) => console.log(error));
